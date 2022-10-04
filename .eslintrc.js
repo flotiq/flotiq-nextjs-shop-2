@@ -25,7 +25,7 @@ module.exports = {
     ],
     rules: {
         /* Restrict file extensions that may contain JSX */
-        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', ''] }],
         /* This rule will warn when it encounters a reference to an identifier that has not yet been declared. */
         'no-use-before-define': ['error', { variables: false }],
         /* This rule enforces consistent line breaks inside braces of object literals or destructuring assignments. */
@@ -55,6 +55,7 @@ module.exports = {
         'react/button-has-type': 0,
         'react/state-in-constructor': 0,
         'react/jsx-fragments': 0,
+        'no-param-reassign': 0,
         'guard-for-in': 0,
         'no-underscore-dangle': 0,
         'jsx-a11y/click-events-have-key-events': 0,
