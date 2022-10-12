@@ -38,6 +38,7 @@ Check out live demo: [https://flotiq-nextjs-shop-2.netlify.app](https://flotiq-n
 
     ```
     FLOTIQ_API_KEY=YOUR FLOTIQ API KEY
+    SNIPCART_API_KEY=YOUR SNIPCART API KEY
     ```
 
 4. **Install dependencies**
