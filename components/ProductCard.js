@@ -13,8 +13,8 @@ const ProductCard = ({ name, description, price, productImage, buttonLabel, slug
             <a href="replace" className="w-full image-wrapper">
                 <Image
                     src={productImage}
-                    width="1920"
-                    height="1275"
+                    width="702"
+                    height="924"
                     alt={name}
                     objectFit="cover"
                 />

@@ -18,7 +18,7 @@ export async function getStaticProps({ params }) {
         ? previousPost.data[0].slug : null;
     const nextPost = await getShopNext(createdAt || null);
     const nextPostSlug = (nextPost && nextPost.data && nextPost.data[0]) ? nextPost.data[0].slug : null;
-    const allPost = await getShopAll(1, 3, filtersShops);
+    const allPost = await getShopAll(1, 4, filtersShops);
     return {
         props: {
             post: postBySlug.data[0],

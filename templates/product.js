@@ -29,8 +29,8 @@ const ProductTemplate = ({ post, pageContext }) => {
                     >
                         <Image
                             src={FlotiqImage.getSrc(product.productImage[0], 0, 0)}
-                            width="1920"
-                            height="1275"
+                            width="958"
+                            height="1261"
                             className="w-full"
                             objectFit="cover"
                             alt={product.name}
