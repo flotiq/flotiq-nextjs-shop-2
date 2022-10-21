@@ -9,8 +9,9 @@ import config from '../lib/config';
 import ImageWithTextBackground from '../public/assets/bg-image.jpg';
 import CategoriesChoiceBar from '../components/CategoriesChoiceBar';
 
-const ProductsPage = ({ post, pageContext }) => {
+const ProductsPage = ({ post, data, pageContext }) => {
     const products = post;
+    const allProducts = data;
     const categoryTabs = [
         { name: 'Category 1', href: '#', current: true },
         { name: 'Category 2', href: '#', current: false },
@@ -46,7 +47,7 @@ const ProductsPage = ({ post, pageContext }) => {
                     baseUrl="/products/"
                 />
             </div>
-            <BestSellers products={products} additionalClass={['bg-green-gray py-14']} headerText="Best sellers" />
+            <BestSellers products={allProducts} additionalClass={['bg-green-gray py-14']} headerText="Best sellers" />
             <ImageWithText
                 image={ImageWithTextBackground}
                 headerText1="Buy one"
