@@ -1,7 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import '@fontsource/inter/600.css';
+@import '@fontsource/sora/400.css';
+@import '@fontsource/roboto/100.css';
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/darker-grotesque/300.css';
+@import '@fontsource/darker-grotesque/400.css';
+@import '@fontsource/darker-grotesque/500.css';
+
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", "sans-serif";
+  font-family: "Sora", "sans-serif";
+  font-family: "Inter", "sans-serif";
+  font-family: "Darker Grotesque", "sans-serif";
+}
+
+.image-wrapper>span {
+  display: block !important;
 }
