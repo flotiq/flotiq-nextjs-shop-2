@@ -57,6 +57,7 @@ module.exports = {
         'react/jsx-fragments': 0,
         'no-param-reassign': 0,
         'guard-for-in': 0,
+        'react/no-danger': 0,
         'no-underscore-dangle': 0,
         'jsx-a11y/click-events-have-key-events': 0,
         'jsx-a11y/no-static-element-interactions': 0,
