@@ -11,8 +11,9 @@ import Products from '../sections/Products';
 import ReviewsSection from '../sections/ReviewsSection';
 import Avatar from '../public/assets/avatar.png';
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, post }) => {
     const products = data;
+    const bestsellerPosts = post;
     const reviews = [
         {
             review: 'The best store in our town! plants are always in good condition.',
@@ -43,7 +44,7 @@ const IndexPage = ({ data }) => {
                 buttonLabel="All the products"
                 heroImage="/assets/hero-bg.jpg"
             />
-            <BestSellers products={products} additionalClass={['bg-green-gray py-14']} headerText="Best sellers" />
+            <BestSellers products={bestsellerPosts} additionalClass={['bg-green-gray py-14']} headerText="Best sellers" />
             <Products products={products} additionalClass={['my-5']} headerText="Products" />
             <ReviewsSection
                 headerText="Reviews"
@@ -64,10 +65,12 @@ const IndexPage = ({ data }) => {
 };
 
 export async function getStaticProps({ params }) {
-    const fetchPost = await getShopAll(params.page, config.blog.postPerPage);
+    const allPost = await getShopAll(params.page, config.blog.postPerPage);
+    const fetchPost = await getShopAll(params.page, config.blog.bestsellerPerPage);
     return {
         props: {
-            data: fetchPost.data,
+            post: fetchPost.data,
+            data: allPost.data,
             pageContext: {
                 currentPage: fetchPost.current_page,
                 numPages: fetchPost.total_pages,

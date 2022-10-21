@@ -12,15 +12,15 @@ const Home = ({ post, data, pageContext }) => (
 );
 
 export async function getStaticProps({ params }) {
-    const allPost = await getShopAll(params.page, config.blog.productPerPage);
-    const fetchPost = await getShopAll(1, config.blog.postPerPage);
+    const fetchPost = await getShopAll(params.page, config.blog.productPerPage);
+    const allPost = await getShopAll(1, config.blog.bestsellerPerPage);
     return {
         props: {
-            post: allPost.data,
-            data: fetchPost.data,
+            post: fetchPost.data,
+            data: allPost.data,
             pageContext: {
-                currentPage: allPost.current_page,
-                numPages: allPost.total_pages,
+                currentPage: fetchPost.current_page,
+                numPages: fetchPost.total_pages,
             },
         },
     };

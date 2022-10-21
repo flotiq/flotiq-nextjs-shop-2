@@ -11,7 +11,7 @@ import CategoriesChoiceBar from '../components/CategoriesChoiceBar';
 
 const ProductsPage = ({ post, data, pageContext }) => {
     const products = post;
-    const allProducts = data;
+    const bestsellerPosts = data;
     const categoryTabs = [
         { name: 'Category 1', href: '#', current: true },
         { name: 'Category 2', href: '#', current: false },
@@ -47,7 +47,7 @@ const ProductsPage = ({ post, data, pageContext }) => {
                     baseUrl="/products/"
                 />
             </div>
-            <BestSellers products={allProducts} additionalClass={['bg-green-gray py-14']} headerText="Best sellers" />
+            <BestSellers products={bestsellerPosts} additionalClass={['bg-green-gray py-14']} headerText="Best sellers" />
             <ImageWithText
                 image={ImageWithTextBackground}
                 headerText1="Buy one"
