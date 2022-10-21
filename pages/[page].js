@@ -44,7 +44,11 @@ const IndexPage = ({ data, post }) => {
                 buttonLabel="All the products"
                 heroImage="/assets/hero-bg.jpg"
             />
-            <BestSellers products={bestsellerPosts} additionalClass={['bg-green-gray py-14']} headerText="Best sellers" />
+            <BestSellers
+                products={bestsellerPosts}
+                additionalClass={['bg-green-gray py-14']}
+                headerText="Best sellers"
+            />
             <Products products={products} additionalClass={['my-5']} headerText="Products" />
             <ReviewsSection
                 headerText="Reviews"
