@@ -39,6 +39,7 @@ Check out live demo: [https://flotiq-nextjs-shop-2.netlify.app](https://flotiq-n
     ```
     FLOTIQ_API_KEY=YOUR FLOTIQ API KEY
     SNIPCART_API_KEY=YOUR SNIPCART API KEY
+    GA_TRACKING_ID=YOUR GA API KEY
     ```
    To add `SNIPCART API KEY` to your starter you need to log in to the website: https://snipcart.com/
 
