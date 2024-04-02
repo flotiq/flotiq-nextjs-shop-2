@@ -9,7 +9,7 @@
     "lint:fix": "eslint --fix --ext .js,.jsx ."
   },
   "dependencies": {
-    "@fontsource/darker-grotesque": "^4.5.8",
+    "@fontsource/darker-grotesque": "^5.0.19",
     "@fontsource/inter": "^4.5.12",
     "@fontsource/roboto": "^4.5.8",
     "@fontsource/sora": "^5.0.17",
