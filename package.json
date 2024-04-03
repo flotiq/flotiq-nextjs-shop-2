@@ -16,7 +16,6 @@
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "1.0.6",
     "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/line-clamp": "^0.4.4",
     "@zeit/next-source-maps": "^0.0.3",
     "config": "^3.3.11",
     "dotenv": "^16.4.5",
