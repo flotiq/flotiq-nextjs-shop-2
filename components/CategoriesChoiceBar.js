@@ -32,7 +32,7 @@ const CategoriesChoiceBar = ({ additionalClass, categoryTabs }) => {
                     {categoryTabs.map((tab) => (
                         <Link href={tab.href} key={tab.name} aria-current={tab.current ? 'page' : undefined}>
                             <a
-                                href="replace"
+                                href="#"
                                 className={classNames(
                                     tab.current
                                         ? 'underline !font-semibold text-primary hover:text-gray-700 '

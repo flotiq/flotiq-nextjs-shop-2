@@ -8,9 +8,9 @@ import Products from '../sections/Products';
 import ProductBackButton from '../components/ProductBackButton';
 import FlotiqImage from '../lib/FlotiqImage';
 
-const ProductTemplate = ({ post, pageContext }) => {
+const ProductTemplate = ({ product, pageContext }) => {
     const [quantity, setQuantity] = useState(1);
-    const product = post;
+    
     const products = pageContext.pageAll;
     return (
         <Layout additionalClass={['bg-white']}>

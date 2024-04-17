@@ -10,10 +10,10 @@ Check out live demo: [https://flotiq-nextjs-shop-2.netlify.app](https://flotiq-n
 
 ## Quick start
 
-1. **Start the project from template using npx**
+1. **Start the project from template**
 
     ```bash
-    git clone https://github.com/flotiq/nextjs-starter-shop-2.git flotiq-nextjs-shop-2
+    git clone https://github.com/flotiq/flotiq-nextjs-shop-2.git flotiq-nextjs-shop-2
     ```
 2. **Import example data from starter to Flotiq**
    

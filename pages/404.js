@@ -16,7 +16,7 @@ const NotFoundPage = () => (
 
             {/* Example usage of button */}
             <Link href="/">
-                <a href="replace">
+                <a href="#">
                     <Button
                         rounded="none"
                         size="md"
