@@ -1,33 +1,34 @@
 import React from 'react';
 import ProductsPage from '../../templates/products';
-import { getShopAll } from '../../lib/shop';
+import { getProducts } from '../../lib/shop';
 import config from '../../lib/config';
+import { replaceUndefinedWithNull } from '../../lib/sanitize';
 
-const Home = ({ post, data, pageContext }) => (
+const Home = ({ product, bestsellers, pageContext }) => (
     <ProductsPage
-        post={post}
-        data={data}
+        products={product}
+        bestsellers={bestsellers}
         pageContext={pageContext}
     />
 );
 
 export async function getStaticProps({ params }) {
-    const fetchPost = await getShopAll(params.page, config.blog.productPerPage);
-    const allPost = await getShopAll(1, config.blog.bestsellerPerPage);
+    const fetchProduct = await getProducts(params.page, config.shop.productPerPage);
+    const bestsellers = await getProducts(1, config.shop.bestsellerPerPage);
     return {
         props: {
-            post: fetchPost.data,
-            data: allPost.data,
+            product: replaceUndefinedWithNull(fetchProduct.data),
+            bestsellers: replaceUndefinedWithNull(bestsellers.data),
             pageContext: {
-                currentPage: fetchPost.current_page,
-                numPages: fetchPost.total_pages,
+                currentPage: fetchProduct.current_page,
+                numPages: fetchProduct.total_pages,
             },
         },
     };
 }
 
 export async function getStaticPaths() {
-    const fetcher = await getShopAll(1, config.blog.productPerPage);
+    const fetcher = await getProducts(1, config.shop.productPerPage);
     const paths = [];
 
     for (let i = 0; i < fetcher.total_pages; i += 1) {

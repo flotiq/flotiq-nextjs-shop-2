@@ -9,8 +9,8 @@ const ProductCard = ({ name, description, price, productImage, buttonLabel, slug
         rounded="none"
         additionalClasses={['!bg-transparent mb-5 cursor-pointer']}
     >
-        <Link href={`/post/${encodeURIComponent(slug)}`} passHref>
-            <a href="replace" className="w-full image-wrapper">
+        <Link href={`/product/${encodeURIComponent(slug)}`} passHref>
+            <a href="#" className="w-full image-wrapper">
                 <Image
                     src={productImage}
                     width="702"
@@ -21,8 +21,8 @@ const ProductCard = ({ name, description, price, productImage, buttonLabel, slug
             </a>
         </Link>
         <Card.Body additionalClasses={['!px-0 !pt-3']}>
-            <Link href={`/post/${encodeURIComponent(slug)}`} passHref>
-                <a href="replace">
+            <Link href={`/product/${encodeURIComponent(slug)}`} passHref>
+                <a href="#">
                     <Card.Title additionalClasses={['flex justify-between !font-medium !text-2xl']}>
                         <span>{name}</span>
                         <span>

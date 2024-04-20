@@ -11,7 +11,7 @@ const Header = () => (
                     <div className="flex justify-between h-16">
                         <div className="w-full flex justify-center md:justify-between items-center">
                             <Link href="/" className="flex-shrink-0 flex items-center">
-                                <a href="replace">
+                                <a href="#">
                                     <img
                                         className="block h-10 md:h-16 w-auto"
                                         src="/assets/planty-logo.svg"
@@ -24,7 +24,7 @@ const Header = () => (
                             <div className="hidden md:ml-6 md:text-xl md:flex md:space-x-16">
                                 <Link href="/products/1">
                                     <a
-                                        href="replace"
+                                        href="#"
                                         className="inline-flex items-center px-1 pt-1
                                         text-xl font-medium text-secondary"
                                     >
@@ -33,7 +33,7 @@ const Header = () => (
                                 </Link>
                                 <Link href="/">
                                     <a
-                                        href="replace"
+                                        href="#"
                                         className="hover:text-secondary inline-flex
                                         items-center px-1 pt-1 text-xl font-light"
                                     >
@@ -42,7 +42,7 @@ const Header = () => (
                                 </Link>
                                 <Link href="/">
                                     <a
-                                        href="replace"
+                                        href="#"
                                         className="hover:text-secondary inline-flex
                                          items-center px-1 pt-1 text-xl font-light"
                                     >

@@ -5,7 +5,7 @@ import Link from 'next/link';
 const ProductBackButton = ({ backButtonText }) => (
     <Link href="/">
         <a
-            href="replace"
+            href="#"
             className="border-transparent pt-12 pb-5 flex
             items-center flex items-center font-light md:text-2xl text-sm font-size"
         >

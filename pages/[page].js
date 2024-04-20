@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Layout from '../layouts/layout';
 import config from '../lib/config';
-import { getShopAll } from '../lib/shop';
+import { getProducts } from '../lib/shop';
 import ImageWithText from '../components/ImageWithText';
 import ImageWithTextBackground from '../public/assets/bg-image.jpg';
 import Hero from '../sections/Hero';
@@ -10,10 +10,10 @@ import BestSellers from '../sections/BestSellers';
 import Products from '../sections/Products';
 import ReviewsSection from '../sections/ReviewsSection';
 import Avatar from '../public/assets/avatar.png';
+import { replaceUndefinedWithNull } from '../lib/sanitize';
 
-const IndexPage = ({ data, post }) => {
-    const products = data;
-    const bestsellerPosts = post;
+const IndexPage = ({ products, bestsellers }) => {
+
     const reviews = [
         {
             review: 'The best store in our town! plants are always in good condition.',
@@ -29,8 +29,7 @@ const IndexPage = ({ data, post }) => {
         },
     ];
 
-    return (
-        <Layout additionalClass={['bg-white']}>
+    return (<Layout additionalClass={['bg-white']}>
             <Head>
                 <title>{config.siteMetadata.title}</title>
                 <meta
@@ -45,7 +44,7 @@ const IndexPage = ({ data, post }) => {
                 heroImage="/assets/hero-bg.jpg"
             />
             <BestSellers
-                products={bestsellerPosts}
+                products={bestsellers}
                 additionalClass={['bg-green-gray py-14']}
                 headerText="Best sellers"
             />
@@ -69,22 +68,24 @@ const IndexPage = ({ data, post }) => {
 };
 
 export async function getStaticProps({ params }) {
-    const allPost = await getShopAll(params.page, config.blog.postPerPage);
-    const fetchPost = await getShopAll(params.page, config.blog.bestsellerPerPage);
+    
+    let products = await getProducts(params.page, config.shop.productPerPage);
+    let bestsellers = await getProducts(params.page, config.shop.bestsellerPerPage);
+    
     return {
         props: {
-            post: fetchPost.data,
-            data: allPost.data,
+            products: replaceUndefinedWithNull(products.data),
+            bestsellers: replaceUndefinedWithNull(bestsellers.data),
             pageContext: {
-                currentPage: fetchPost.current_page,
-                numPages: fetchPost.total_pages,
+                currentPage: products.current_page,
+                numPages: products.total_pages,
             },
         },
     };
 }
 
 export async function getStaticPaths() {
-    const fetcher = await getShopAll(1, config.blog.postPerPage);
+    const fetcher = await getProducts(1, config.shop.productPerPage);
     const paths = [];
 
     for (let i = 0; i < fetcher.total_pages; i += 1) {
