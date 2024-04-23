@@ -67,42 +67,42 @@ import {
     ProductWithoutRequiredToJSON,
 } from '../models/index';
 
-export interface BatchCreateProductRequest {
+export interface ProductAPIBatchCreateProductRequest {
     updateExisting?: boolean;
     ProductWithoutInternal?: Array<ProductWithoutInternal>;
 }
 
-export interface BatchDeleteProductRequest {
+export interface ProductAPIBatchDeleteProductRequest {
     request_body?: Array<string>;
 }
 
-export interface BatchPatchProductRequest {
+export interface ProductAPIBatchPatchProductRequest {
     ProductWithoutInternal?: Array<ProductWithoutInternal>;
 }
 
-export interface CreateProductRequest {
+export interface ProductAPICreateProductRequest {
     ProductWithoutInternal?: ProductWithoutInternal;
 }
 
-export interface DeleteProductRequest {
+export interface ProductAPIDeleteProductRequest {
     id: string;
 }
 
-export interface GetProductRequest {
+export interface ProductAPIGetProductRequest {
     id: string;
     hydrate?: number;
 }
 
-export interface GetProductVersionsRequest {
+export interface ProductAPIGetProductVersionsRequest {
     id: string;
     versionId: string;
 }
 
-export interface GetRemovedProductRequest {
+export interface ProductAPIGetRemovedProductRequest {
     deletedAfter?: string;
 }
 
-export interface ListProductRequest {
+export interface ProductAPIListProductRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -112,7 +112,7 @@ export interface ListProductRequest {
     ids?: Array<string>;
 }
 
-export interface ListProductVersionRequest {
+export interface ProductAPIListProductVersionRequest {
     id: string;
     page?: number;
     limit?: number;
@@ -120,12 +120,12 @@ export interface ListProductVersionRequest {
     order_direction?: string;
 }
 
-export interface PatchProductRequest {
+export interface ProductAPIPatchProductRequest {
     id: string;
     ProductWithoutRequired?: ProductWithoutRequired;
 }
 
-export interface UpdateProductRequest {
+export interface ProductAPIUpdateProductRequest {
     id: string;
     ProductWithoutInternal?: ProductWithoutInternal;
 }
@@ -133,13 +133,13 @@ export interface UpdateProductRequest {
 /**
  * 
  */
-export class Product extends runtime.BaseAPI {
+export class ProductAPI extends runtime.BaseAPI {
 
     /**
      * Allows you to create or create and update up to 100 objects of Product type. <br />
      * Create a batch of product objects
      */
-    async batchCreateProductRaw(requestParameters: BatchCreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+    async batchCreateProductRaw(requestParameters: ProductAPIBatchCreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         if (requestParameters['updateExisting'] != null) {
@@ -169,7 +169,7 @@ export class Product extends runtime.BaseAPI {
      * Allows you to create or create and update up to 100 objects of Product type. <br />
      * Create a batch of product objects
      */
-    async batchCreateProduct(requestParameters: BatchCreateProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+    async batchCreateProduct(requestParameters: ProductAPIBatchCreateProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
         const response = await this.batchCreateProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -178,7 +178,7 @@ export class Product extends runtime.BaseAPI {
      * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Product objects
      */
-    async batchDeleteProductRaw(requestParameters: BatchDeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
+    async batchDeleteProductRaw(requestParameters: ProductAPIBatchDeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -204,7 +204,7 @@ export class Product extends runtime.BaseAPI {
      * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Product objects
      */
-    async batchDeleteProduct(requestParameters: BatchDeleteProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
+    async batchDeleteProduct(requestParameters: ProductAPIBatchDeleteProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
         const response = await this.batchDeleteProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -213,7 +213,7 @@ export class Product extends runtime.BaseAPI {
      * Allows you to update up to 100 objects of Product type. <br />
      * Update selected fields of a batch of objects
      */
-    async batchPatchProductRaw(requestParameters: BatchPatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+    async batchPatchProductRaw(requestParameters: ProductAPIBatchPatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -239,7 +239,7 @@ export class Product extends runtime.BaseAPI {
      * Allows you to update up to 100 objects of Product type. <br />
      * Update selected fields of a batch of objects
      */
-    async batchPatchProduct(requestParameters: BatchPatchProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+    async batchPatchProduct(requestParameters: ProductAPIBatchPatchProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
         const response = await this.batchPatchProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -248,7 +248,7 @@ export class Product extends runtime.BaseAPI {
      * Allows you to create object of Product type. <br />
      * Create a Product object
      */
-    async createProductRaw(requestParameters: CreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
+    async createProductRaw(requestParameters: ProductAPICreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -274,7 +274,7 @@ export class Product extends runtime.BaseAPI {
      * Allows you to create object of Product type. <br />
      * Create a Product object
      */
-    async createProduct(requestParameters: CreateProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
+    async createProduct(requestParameters: ProductAPICreateProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
         const response = await this.createProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -283,7 +283,7 @@ export class Product extends runtime.BaseAPI {
      * Removes Product object.<br />
      * Delete a Product object
      */
-    async deleteProductRaw(requestParameters: DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProductRaw(requestParameters: ProductAPIDeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -313,7 +313,7 @@ export class Product extends runtime.BaseAPI {
      * Removes Product object.<br />
      * Delete a Product object
      */
-    async deleteProduct(requestParameters: DeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProduct(requestParameters: ProductAPIDeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProductRaw(requestParameters, initOverrides);
     }
 
@@ -321,7 +321,7 @@ export class Product extends runtime.BaseAPI {
      * Returns all information about Product object. <br />
      * Get Product object by Id
      */
-    async getProductRaw(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
+    async getProductRaw(requestParameters: ProductAPIGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -355,7 +355,7 @@ export class Product extends runtime.BaseAPI {
      * Returns all information about Product object. <br />
      * Get Product object by Id
      */
-    async getProduct(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
+    async getProduct(requestParameters: ProductAPIGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
         const response = await this.getProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -364,7 +364,7 @@ export class Product extends runtime.BaseAPI {
      * Return version of Product object. <br />
      * Get a specific version of Product object
      */
-    async getProductVersionsRaw(requestParameters: GetProductVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
+    async getProductVersionsRaw(requestParameters: ProductAPIGetProductVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -401,7 +401,7 @@ export class Product extends runtime.BaseAPI {
      * Return version of Product object. <br />
      * Get a specific version of Product object
      */
-    async getProductVersions(requestParameters: GetProductVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
+    async getProductVersions(requestParameters: ProductAPIGetProductVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
         const response = await this.getProductVersionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -410,7 +410,7 @@ export class Product extends runtime.BaseAPI {
      * Get ids of removed Product objects. <br />
      * Get removed object identifiers
      */
-    async getRemovedProductRaw(requestParameters: GetRemovedProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getRemovedProductRaw(requestParameters: ProductAPIGetRemovedProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const queryParameters: any = {};
 
         if (requestParameters['deletedAfter'] != null) {
@@ -437,7 +437,7 @@ export class Product extends runtime.BaseAPI {
      * Get ids of removed Product objects. <br />
      * Get removed object identifiers
      */
-    async getRemovedProduct(requestParameters: GetRemovedProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getRemovedProduct(requestParameters: ProductAPIGetRemovedProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getRemovedProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -446,7 +446,7 @@ export class Product extends runtime.BaseAPI {
      * List objects of Product type. <br />
      * List Product objects
      */
-    async listProductRaw(requestParameters: ListProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductList>> {
+    async listProductRaw(requestParameters: ProductAPIListProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductList>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -497,7 +497,7 @@ export class Product extends runtime.BaseAPI {
      * List objects of Product type. <br />
      * List Product objects
      */
-    async listProduct(requestParameters: ListProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductList> {
+    async listProduct(requestParameters: ProductAPIListProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductList> {
         const response = await this.listProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -506,7 +506,7 @@ export class Product extends runtime.BaseAPI {
      * List objects versions of Product type. <br />
      * List all versions of a Product object
      */
-    async listProductVersionRaw(requestParameters: ListProductVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVersionsList>> {
+    async listProductVersionRaw(requestParameters: ProductAPIListProductVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVersionsList>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -552,7 +552,7 @@ export class Product extends runtime.BaseAPI {
      * List objects versions of Product type. <br />
      * List all versions of a Product object
      */
-    async listProductVersion(requestParameters: ListProductVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVersionsList> {
+    async listProductVersion(requestParameters: ProductAPIListProductVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVersionsList> {
         const response = await this.listProductVersionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -561,7 +561,7 @@ export class Product extends runtime.BaseAPI {
      * Allows update of the Product object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Product object
      */
-    async patchProductRaw(requestParameters: PatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
+    async patchProductRaw(requestParameters: ProductAPIPatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -594,7 +594,7 @@ export class Product extends runtime.BaseAPI {
      * Allows update of the Product object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Product object
      */
-    async patchProduct(requestParameters: PatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
+    async patchProduct(requestParameters: ProductAPIPatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
         const response = await this.patchProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -603,7 +603,7 @@ export class Product extends runtime.BaseAPI {
      * Allows update of the Product object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Product object
      */
-    async updateProductRaw(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
+    async updateProductRaw(requestParameters: ProductAPIUpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -636,7 +636,7 @@ export class Product extends runtime.BaseAPI {
      * Allows update of the Product object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Product object
      */
-    async updateProduct(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
+    async updateProduct(requestParameters: ProductAPIUpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product> {
         const response = await this.updateProductRaw(requestParameters, initOverrides);
         return await response.value();
     }

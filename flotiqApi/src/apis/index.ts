@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './MediaInternal';
-export * from './Product';
-export * from './Project';
-export * from './TagInternal';
+export * from './MediaInternalAPI';
+export * from './ProductAPI';
+export * from './ProjectAPI';
+export * from './TagInternalAPI';

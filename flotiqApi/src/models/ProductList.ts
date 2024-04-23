@@ -19,7 +19,9 @@ import {
     ProductFromJSONTyped,
     ProductToJSON,
 } from './Product';
-//import { DataSource, DataSourceFromJSON } from './DataSource';
+
+import { DataSource, DataSourceFromJSON } from './DataSource';
+
 
 //import { DataSource } from './DataSource';
 

@@ -19,7 +19,9 @@ import {
     MediaWithoutInternalAllOfTrimFromJSONTyped,
     MediaWithoutInternalAllOfTrimToJSON,
 } from './MediaWithoutInternalAllOfTrim';
-//import { DataSource, DataSourceFromJSON } from './DataSource';
+
+import { DataSource, DataSourceFromJSON } from './DataSource';
+
 
 //import { DataSource } from './DataSource';
 

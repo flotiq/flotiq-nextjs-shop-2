@@ -3,10 +3,10 @@
 .openapi-generator-ignore
 README.md
 package.json
-src/apis/MediaInternal.ts
-src/apis/Product.ts
-src/apis/Project.ts
-src/apis/TagInternal.ts
+src/apis/MediaInternalAPI.ts
+src/apis/ProductAPI.ts
+src/apis/ProjectAPI.ts
+src/apis/TagInternalAPI.ts
 src/apis/index.ts
 src/index.ts
 src/models/AbstractContentTypeSchemaDefinition.ts

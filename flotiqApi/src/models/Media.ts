@@ -31,7 +31,9 @@ import {
     TagFromJSONTyped,
     TagToJSON,
 } from './Tag';
-//import { DataSource, DataSourceFromJSON } from './DataSource';
+
+import { DataSource, DataSourceFromJSON } from './DataSource';
+
 
 //import { DataSource } from './DataSource';
 

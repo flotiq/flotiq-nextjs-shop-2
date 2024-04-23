@@ -29,23 +29,23 @@ const hydrateMiddleware =  async ctx => {
 };
 
 export class FlotiqApi {
-    public MediaInternal : Api.MediaInternal;
-    public Product : Api.Product;
-    public Project : Api.Project;
-    public TagInternal : Api.TagInternal;
+    public MediaInternalAPI : Api.MediaInternalAPI;
+    public ProductAPI : Api.ProductAPI;
+    public ProjectAPI : Api.ProjectAPI;
+    public TagInternalAPI : Api.TagInternalAPI;
 
     constructor(key){
         const configParameters: runtime.ConfigurationParameters = {
             apiKey: key
         };
         const configuration = new runtime.Configuration(configParameters);
-        this.MediaInternal = new Api.MediaInternal(configuration);
-        this.MediaInternal = this.MediaInternal.withPreMiddleware( hydrateMiddleware );
-        this.Product = new Api.Product(configuration);
-        this.Product = this.Product.withPreMiddleware( hydrateMiddleware );
-        this.Project = new Api.Project(configuration);
-        this.Project = this.Project.withPreMiddleware( hydrateMiddleware );
-        this.TagInternal = new Api.TagInternal(configuration);
-        this.TagInternal = this.TagInternal.withPreMiddleware( hydrateMiddleware );
+        this.MediaInternalAPI = new Api.MediaInternalAPI(configuration);
+        this.MediaInternalAPI = this.MediaInternalAPI.withPreMiddleware( hydrateMiddleware );
+        this.ProductAPI = new Api.ProductAPI(configuration);
+        this.ProductAPI = this.ProductAPI.withPreMiddleware( hydrateMiddleware );
+        this.ProjectAPI = new Api.ProjectAPI(configuration);
+        this.ProjectAPI = this.ProjectAPI.withPreMiddleware( hydrateMiddleware );
+        this.TagInternalAPI = new Api.TagInternalAPI(configuration);
+        this.TagInternalAPI = this.TagInternalAPI.withPreMiddleware( hydrateMiddleware );
     }
 }

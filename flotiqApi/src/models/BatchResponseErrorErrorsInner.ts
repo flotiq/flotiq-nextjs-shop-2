@@ -19,7 +19,9 @@ import {
     BatchResponseErrorErrorsInnerErrorsFromJSONTyped,
     BatchResponseErrorErrorsInnerErrorsToJSON,
 } from './BatchResponseErrorErrorsInnerErrors';
-//import { DataSource, DataSourceFromJSON } from './DataSource';
+
+import { DataSource, DataSourceFromJSON } from './DataSource';
+
 
 //import { DataSource } from './DataSource';
 

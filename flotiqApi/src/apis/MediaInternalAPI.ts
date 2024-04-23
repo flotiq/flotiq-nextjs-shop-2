@@ -67,7 +67,7 @@ import {
     Model404ResponseToJSON,
 } from '../models/index';
 
-export interface MediaRequest {
+export interface MediaInternalAPIMediaRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -77,7 +77,7 @@ export interface MediaRequest {
     ids?: Array<string>;
 }
 
-export interface MediaVersionRequest {
+export interface MediaInternalAPIMediaVersionRequest {
     id: string;
     page?: number;
     limit?: number;
@@ -85,61 +85,61 @@ export interface MediaVersionRequest {
     order_direction?: string;
 }
 
-export interface MediaVersionsRequest {
+export interface MediaInternalAPIMediaVersionsRequest {
     id: string;
     versionId: string;
 }
 
-export interface Media0Request {
+export interface MediaInternalAPIMedia0Request {
     MediaWithoutInternal?: MediaWithoutInternal;
 }
 
-export interface Media1Request {
+export interface MediaInternalAPIMedia1Request {
     id: string;
     hydrate?: number;
 }
 
-export interface Media2Request {
+export interface MediaInternalAPIMedia2Request {
     id: string;
     MediaWithoutInternal?: MediaWithoutInternal;
 }
 
-export interface Media3Request {
+export interface MediaInternalAPIMedia3Request {
     id: string;
 }
 
-export interface Media4Request {
+export interface MediaInternalAPIMedia4Request {
     id: string;
     MediaWithoutRequired?: MediaWithoutRequired;
 }
 
-export interface Media5Request {
+export interface MediaInternalAPIMedia5Request {
     updateExisting?: boolean;
     MediaWithoutInternal?: Array<MediaWithoutInternal>;
 }
 
-export interface Media6Request {
+export interface MediaInternalAPIMedia6Request {
     MediaWithoutInternal?: Array<MediaWithoutInternal>;
 }
 
-export interface Media7Request {
+export interface MediaInternalAPIMedia7Request {
     request_body?: Array<string>;
 }
 
-export interface Media8Request {
+export interface MediaInternalAPIMedia8Request {
     deletedAfter?: string;
 }
 
 /**
  * 
  */
-export class MediaInternal extends runtime.BaseAPI {
+export class MediaInternalAPI extends runtime.BaseAPI {
 
     /**
      * List objects of Media (internal) type. <br />
      * List _media objects
      */
-    async mediaRaw(requestParameters: MediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaList>> {
+    async mediaRaw(requestParameters: MediaInternalAPIMediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaList>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -190,7 +190,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * List objects of Media (internal) type. <br />
      * List _media objects
      */
-    async media(requestParameters: MediaRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaList> {
+    async media(requestParameters: MediaInternalAPIMediaRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaList> {
         const response = await this.mediaRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -199,7 +199,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * List objects versions of Media (internal) type. <br />
      * List all versions of a _media object
      */
-    async mediaVersionRaw(requestParameters: MediaVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaVersionsList>> {
+    async mediaVersionRaw(requestParameters: MediaInternalAPIMediaVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaVersionsList>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -245,7 +245,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * List objects versions of Media (internal) type. <br />
      * List all versions of a _media object
      */
-    async mediaVersion(requestParameters: MediaVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaVersionsList> {
+    async mediaVersion(requestParameters: MediaInternalAPIMediaVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaVersionsList> {
         const response = await this.mediaVersionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -254,7 +254,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Return version of Media (internal) object. <br />
      * Get a specific version of _media object
      */
-    async mediaVersionsRaw(requestParameters: MediaVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+    async mediaVersionsRaw(requestParameters: MediaInternalAPIMediaVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -291,7 +291,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Return version of Media (internal) object. <br />
      * Get a specific version of _media object
      */
-    async mediaVersions(requestParameters: MediaVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+    async mediaVersions(requestParameters: MediaInternalAPIMediaVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
         const response = await this.mediaVersionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -300,7 +300,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows you to create object of Media (internal) type. <br />
      * Create a _media object
      */
-    async media_1Raw(requestParameters: Media0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+    async media_1Raw(requestParameters: MediaInternalAPIMedia0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -326,7 +326,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows you to create object of Media (internal) type. <br />
      * Create a _media object
      */
-    async media_1(requestParameters: Media0Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+    async media_1(requestParameters: MediaInternalAPIMedia0Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
         const response = await this.media_1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -335,7 +335,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Returns all information about Media (internal) object. <br />
      * Get _media object by Id
      */
-    async media_2Raw(requestParameters: Media1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+    async media_2Raw(requestParameters: MediaInternalAPIMedia1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -369,7 +369,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Returns all information about Media (internal) object. <br />
      * Get _media object by Id
      */
-    async media_2(requestParameters: Media1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+    async media_2(requestParameters: MediaInternalAPIMedia1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
         const response = await this.media_2Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -378,7 +378,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing _media object
      */
-    async media_3Raw(requestParameters: Media2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+    async media_3Raw(requestParameters: MediaInternalAPIMedia2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -411,7 +411,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing _media object
      */
-    async media_3(requestParameters: Media2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+    async media_3(requestParameters: MediaInternalAPIMedia2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
         const response = await this.media_3Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -420,7 +420,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Removes Media (internal) object.<br />
      * Delete a _media object
      */
-    async media_4Raw(requestParameters: Media3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async media_4Raw(requestParameters: MediaInternalAPIMedia3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -450,7 +450,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Removes Media (internal) object.<br />
      * Delete a _media object
      */
-    async media_4(requestParameters: Media3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async media_4(requestParameters: MediaInternalAPIMedia3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.media_4Raw(requestParameters, initOverrides);
     }
 
@@ -458,7 +458,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows update of the Media (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _media object
      */
-    async media_5Raw(requestParameters: Media4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+    async media_5Raw(requestParameters: MediaInternalAPIMedia4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -491,7 +491,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows update of the Media (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _media object
      */
-    async media_5(requestParameters: Media4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+    async media_5(requestParameters: MediaInternalAPIMedia4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
         const response = await this.media_5Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -500,7 +500,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
      * Create a batch of _media objects
      */
-    async media_6Raw(requestParameters: Media5Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+    async media_6Raw(requestParameters: MediaInternalAPIMedia5Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         if (requestParameters['updateExisting'] != null) {
@@ -530,7 +530,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
      * Create a batch of _media objects
      */
-    async media_6(requestParameters: Media5Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+    async media_6(requestParameters: MediaInternalAPIMedia5Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
         const response = await this.media_6Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -539,7 +539,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows you to update up to 100 objects of Media (internal) type. <br />
      * Update selected fields of a batch of objects
      */
-    async media_7Raw(requestParameters: Media6Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+    async media_7Raw(requestParameters: MediaInternalAPIMedia6Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -565,7 +565,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows you to update up to 100 objects of Media (internal) type. <br />
      * Update selected fields of a batch of objects
      */
-    async media_7(requestParameters: Media6Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+    async media_7(requestParameters: MediaInternalAPIMedia6Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
         const response = await this.media_7Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -574,7 +574,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of _media objects
      */
-    async media_8Raw(requestParameters: Media7Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
+    async media_8Raw(requestParameters: MediaInternalAPIMedia7Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -600,7 +600,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of _media objects
      */
-    async media_8(requestParameters: Media7Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
+    async media_8(requestParameters: MediaInternalAPIMedia7Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
         const response = await this.media_8Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -609,7 +609,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Get ids of removed Media (internal) objects. <br />
      * Get removed object identifiers
      */
-    async media_9Raw(requestParameters: Media8Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async media_9Raw(requestParameters: MediaInternalAPIMedia8Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const queryParameters: any = {};
 
         if (requestParameters['deletedAfter'] != null) {
@@ -636,7 +636,7 @@ export class MediaInternal extends runtime.BaseAPI {
      * Get ids of removed Media (internal) objects. <br />
      * Get removed object identifiers
      */
-    async media_9(requestParameters: Media8Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async media_9(requestParameters: MediaInternalAPIMedia8Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.media_9Raw(requestParameters, initOverrides);
         return await response.value();
     }

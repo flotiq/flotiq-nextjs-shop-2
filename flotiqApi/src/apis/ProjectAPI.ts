@@ -67,42 +67,42 @@ import {
     ProjectWithoutRequiredToJSON,
 } from '../models/index';
 
-export interface BatchCreateProjectRequest {
+export interface ProjectAPIBatchCreateProjectRequest {
     updateExisting?: boolean;
     ProjectWithoutInternal?: Array<ProjectWithoutInternal>;
 }
 
-export interface BatchDeleteProjectRequest {
+export interface ProjectAPIBatchDeleteProjectRequest {
     request_body?: Array<string>;
 }
 
-export interface BatchPatchProjectRequest {
+export interface ProjectAPIBatchPatchProjectRequest {
     ProjectWithoutInternal?: Array<ProjectWithoutInternal>;
 }
 
-export interface CreateProjectRequest {
+export interface ProjectAPICreateProjectRequest {
     ProjectWithoutInternal?: ProjectWithoutInternal;
 }
 
-export interface DeleteProjectRequest {
+export interface ProjectAPIDeleteProjectRequest {
     id: string;
 }
 
-export interface GetProjectRequest {
+export interface ProjectAPIGetProjectRequest {
     id: string;
     hydrate?: number;
 }
 
-export interface GetProjectVersionsRequest {
+export interface ProjectAPIGetProjectVersionsRequest {
     id: string;
     versionId: string;
 }
 
-export interface GetRemovedProjectRequest {
+export interface ProjectAPIGetRemovedProjectRequest {
     deletedAfter?: string;
 }
 
-export interface ListProjectRequest {
+export interface ProjectAPIListProjectRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -112,7 +112,7 @@ export interface ListProjectRequest {
     ids?: Array<string>;
 }
 
-export interface ListProjectVersionRequest {
+export interface ProjectAPIListProjectVersionRequest {
     id: string;
     page?: number;
     limit?: number;
@@ -120,12 +120,12 @@ export interface ListProjectVersionRequest {
     order_direction?: string;
 }
 
-export interface PatchProjectRequest {
+export interface ProjectAPIPatchProjectRequest {
     id: string;
     ProjectWithoutRequired?: ProjectWithoutRequired;
 }
 
-export interface UpdateProjectRequest {
+export interface ProjectAPIUpdateProjectRequest {
     id: string;
     ProjectWithoutInternal?: ProjectWithoutInternal;
 }
@@ -133,13 +133,13 @@ export interface UpdateProjectRequest {
 /**
  * 
  */
-export class Project extends runtime.BaseAPI {
+export class ProjectAPI extends runtime.BaseAPI {
 
     /**
      * Allows you to create or create and update up to 100 objects of Project type. <br />
      * Create a batch of project objects
      */
-    async batchCreateProjectRaw(requestParameters: BatchCreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+    async batchCreateProjectRaw(requestParameters: ProjectAPIBatchCreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         if (requestParameters['updateExisting'] != null) {
@@ -169,7 +169,7 @@ export class Project extends runtime.BaseAPI {
      * Allows you to create or create and update up to 100 objects of Project type. <br />
      * Create a batch of project objects
      */
-    async batchCreateProject(requestParameters: BatchCreateProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+    async batchCreateProject(requestParameters: ProjectAPIBatchCreateProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
         const response = await this.batchCreateProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -178,7 +178,7 @@ export class Project extends runtime.BaseAPI {
      * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Project objects
      */
-    async batchDeleteProjectRaw(requestParameters: BatchDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
+    async batchDeleteProjectRaw(requestParameters: ProjectAPIBatchDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -204,7 +204,7 @@ export class Project extends runtime.BaseAPI {
      * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Project objects
      */
-    async batchDeleteProject(requestParameters: BatchDeleteProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
+    async batchDeleteProject(requestParameters: ProjectAPIBatchDeleteProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
         const response = await this.batchDeleteProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -213,7 +213,7 @@ export class Project extends runtime.BaseAPI {
      * Allows you to update up to 100 objects of Project type. <br />
      * Update selected fields of a batch of objects
      */
-    async batchPatchProjectRaw(requestParameters: BatchPatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+    async batchPatchProjectRaw(requestParameters: ProjectAPIBatchPatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -239,7 +239,7 @@ export class Project extends runtime.BaseAPI {
      * Allows you to update up to 100 objects of Project type. <br />
      * Update selected fields of a batch of objects
      */
-    async batchPatchProject(requestParameters: BatchPatchProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+    async batchPatchProject(requestParameters: ProjectAPIBatchPatchProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
         const response = await this.batchPatchProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -248,7 +248,7 @@ export class Project extends runtime.BaseAPI {
      * Allows you to create object of Project type. <br />
      * Create a Project object
      */
-    async createProjectRaw(requestParameters: CreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async createProjectRaw(requestParameters: ProjectAPICreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -274,7 +274,7 @@ export class Project extends runtime.BaseAPI {
      * Allows you to create object of Project type. <br />
      * Create a Project object
      */
-    async createProject(requestParameters: CreateProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
+    async createProject(requestParameters: ProjectAPICreateProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
         const response = await this.createProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -283,7 +283,7 @@ export class Project extends runtime.BaseAPI {
      * Removes Project object.<br />
      * Delete a Project object
      */
-    async deleteProjectRaw(requestParameters: DeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProjectRaw(requestParameters: ProjectAPIDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -313,7 +313,7 @@ export class Project extends runtime.BaseAPI {
      * Removes Project object.<br />
      * Delete a Project object
      */
-    async deleteProject(requestParameters: DeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async deleteProject(requestParameters: ProjectAPIDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProjectRaw(requestParameters, initOverrides);
     }
 
@@ -321,7 +321,7 @@ export class Project extends runtime.BaseAPI {
      * Returns all information about Project object. <br />
      * Get Project object by Id
      */
-    async getProjectRaw(requestParameters: GetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async getProjectRaw(requestParameters: ProjectAPIGetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -355,7 +355,7 @@ export class Project extends runtime.BaseAPI {
      * Returns all information about Project object. <br />
      * Get Project object by Id
      */
-    async getProject(requestParameters: GetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
+    async getProject(requestParameters: ProjectAPIGetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
         const response = await this.getProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -364,7 +364,7 @@ export class Project extends runtime.BaseAPI {
      * Return version of Project object. <br />
      * Get a specific version of Project object
      */
-    async getProjectVersionsRaw(requestParameters: GetProjectVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async getProjectVersionsRaw(requestParameters: ProjectAPIGetProjectVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -401,7 +401,7 @@ export class Project extends runtime.BaseAPI {
      * Return version of Project object. <br />
      * Get a specific version of Project object
      */
-    async getProjectVersions(requestParameters: GetProjectVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
+    async getProjectVersions(requestParameters: ProjectAPIGetProjectVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
         const response = await this.getProjectVersionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -410,7 +410,7 @@ export class Project extends runtime.BaseAPI {
      * Get ids of removed Project objects. <br />
      * Get removed object identifiers
      */
-    async getRemovedProjectRaw(requestParameters: GetRemovedProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async getRemovedProjectRaw(requestParameters: ProjectAPIGetRemovedProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const queryParameters: any = {};
 
         if (requestParameters['deletedAfter'] != null) {
@@ -437,7 +437,7 @@ export class Project extends runtime.BaseAPI {
      * Get ids of removed Project objects. <br />
      * Get removed object identifiers
      */
-    async getRemovedProject(requestParameters: GetRemovedProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async getRemovedProject(requestParameters: ProjectAPIGetRemovedProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getRemovedProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -446,7 +446,7 @@ export class Project extends runtime.BaseAPI {
      * List objects of Project type. <br />
      * List Project objects
      */
-    async listProjectRaw(requestParameters: ListProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectList>> {
+    async listProjectRaw(requestParameters: ProjectAPIListProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectList>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -497,7 +497,7 @@ export class Project extends runtime.BaseAPI {
      * List objects of Project type. <br />
      * List Project objects
      */
-    async listProject(requestParameters: ListProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectList> {
+    async listProject(requestParameters: ProjectAPIListProjectRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectList> {
         const response = await this.listProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -506,7 +506,7 @@ export class Project extends runtime.BaseAPI {
      * List objects versions of Project type. <br />
      * List all versions of a Project object
      */
-    async listProjectVersionRaw(requestParameters: ListProjectVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectVersionsList>> {
+    async listProjectVersionRaw(requestParameters: ProjectAPIListProjectVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectVersionsList>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -552,7 +552,7 @@ export class Project extends runtime.BaseAPI {
      * List objects versions of Project type. <br />
      * List all versions of a Project object
      */
-    async listProjectVersion(requestParameters: ListProjectVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectVersionsList> {
+    async listProjectVersion(requestParameters: ProjectAPIListProjectVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectVersionsList> {
         const response = await this.listProjectVersionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -561,7 +561,7 @@ export class Project extends runtime.BaseAPI {
      * Allows update of the Project object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Project object
      */
-    async patchProjectRaw(requestParameters: PatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async patchProjectRaw(requestParameters: ProjectAPIPatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -594,7 +594,7 @@ export class Project extends runtime.BaseAPI {
      * Allows update of the Project object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Project object
      */
-    async patchProject(requestParameters: PatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
+    async patchProject(requestParameters: ProjectAPIPatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
         const response = await this.patchProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -603,7 +603,7 @@ export class Project extends runtime.BaseAPI {
      * Allows update of the Project object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Project object
      */
-    async updateProjectRaw(requestParameters: UpdateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async updateProjectRaw(requestParameters: ProjectAPIUpdateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -636,7 +636,7 @@ export class Project extends runtime.BaseAPI {
      * Allows update of the Project object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Project object
      */
-    async updateProject(requestParameters: UpdateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
+    async updateProject(requestParameters: ProjectAPIUpdateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
         const response = await this.updateProjectRaw(requestParameters, initOverrides);
         return await response.value();
     }

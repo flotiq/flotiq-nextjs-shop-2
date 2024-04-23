@@ -67,7 +67,7 @@ import {
     TagWithoutRequiredToJSON,
 } from '../models/index';
 
-export interface TagRequest {
+export interface TagInternalAPITagRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -77,7 +77,7 @@ export interface TagRequest {
     ids?: Array<string>;
 }
 
-export interface TagVersionRequest {
+export interface TagInternalAPITagVersionRequest {
     id: string;
     page?: number;
     limit?: number;
@@ -85,61 +85,61 @@ export interface TagVersionRequest {
     order_direction?: string;
 }
 
-export interface TagVersionsRequest {
+export interface TagInternalAPITagVersionsRequest {
     id: string;
     versionId: string;
 }
 
-export interface Tag0Request {
+export interface TagInternalAPITag0Request {
     TagWithoutInternal?: TagWithoutInternal;
 }
 
-export interface Tag1Request {
+export interface TagInternalAPITag1Request {
     id: string;
     hydrate?: number;
 }
 
-export interface Tag2Request {
+export interface TagInternalAPITag2Request {
     id: string;
     TagWithoutInternal?: TagWithoutInternal;
 }
 
-export interface Tag3Request {
+export interface TagInternalAPITag3Request {
     id: string;
 }
 
-export interface Tag4Request {
+export interface TagInternalAPITag4Request {
     id: string;
     TagWithoutRequired?: TagWithoutRequired;
 }
 
-export interface Tag5Request {
+export interface TagInternalAPITag5Request {
     updateExisting?: boolean;
     TagWithoutInternal?: Array<TagWithoutInternal>;
 }
 
-export interface Tag6Request {
+export interface TagInternalAPITag6Request {
     TagWithoutInternal?: Array<TagWithoutInternal>;
 }
 
-export interface Tag7Request {
+export interface TagInternalAPITag7Request {
     request_body?: Array<string>;
 }
 
-export interface Tag8Request {
+export interface TagInternalAPITag8Request {
     deletedAfter?: string;
 }
 
 /**
  * 
  */
-export class TagInternal extends runtime.BaseAPI {
+export class TagInternalAPI extends runtime.BaseAPI {
 
     /**
      * List objects of Tag (internal) type. <br />
      * List _tag objects
      */
-    async tagRaw(requestParameters: TagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagList>> {
+    async tagRaw(requestParameters: TagInternalAPITagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagList>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -190,7 +190,7 @@ export class TagInternal extends runtime.BaseAPI {
      * List objects of Tag (internal) type. <br />
      * List _tag objects
      */
-    async tag(requestParameters: TagRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagList> {
+    async tag(requestParameters: TagInternalAPITagRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagList> {
         const response = await this.tagRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -199,7 +199,7 @@ export class TagInternal extends runtime.BaseAPI {
      * List objects versions of Tag (internal) type. <br />
      * List all versions of a _tag object
      */
-    async tagVersionRaw(requestParameters: TagVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagVersionsList>> {
+    async tagVersionRaw(requestParameters: TagInternalAPITagVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagVersionsList>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -245,7 +245,7 @@ export class TagInternal extends runtime.BaseAPI {
      * List objects versions of Tag (internal) type. <br />
      * List all versions of a _tag object
      */
-    async tagVersion(requestParameters: TagVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagVersionsList> {
+    async tagVersion(requestParameters: TagInternalAPITagVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagVersionsList> {
         const response = await this.tagVersionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -254,7 +254,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Return version of Tag (internal) object. <br />
      * Get a specific version of _tag object
      */
-    async tagVersionsRaw(requestParameters: TagVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+    async tagVersionsRaw(requestParameters: TagInternalAPITagVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -291,7 +291,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Return version of Tag (internal) object. <br />
      * Get a specific version of _tag object
      */
-    async tagVersions(requestParameters: TagVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+    async tagVersions(requestParameters: TagInternalAPITagVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
         const response = await this.tagVersionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -300,7 +300,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows you to create object of Tag (internal) type. <br />
      * Create a _tag object
      */
-    async tag_1Raw(requestParameters: Tag0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+    async tag_1Raw(requestParameters: TagInternalAPITag0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -326,7 +326,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows you to create object of Tag (internal) type. <br />
      * Create a _tag object
      */
-    async tag_1(requestParameters: Tag0Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+    async tag_1(requestParameters: TagInternalAPITag0Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
         const response = await this.tag_1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -335,7 +335,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Returns all information about Tag (internal) object. <br />
      * Get _tag object by Id
      */
-    async tag_2Raw(requestParameters: Tag1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+    async tag_2Raw(requestParameters: TagInternalAPITag1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -369,7 +369,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Returns all information about Tag (internal) object. <br />
      * Get _tag object by Id
      */
-    async tag_2(requestParameters: Tag1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+    async tag_2(requestParameters: TagInternalAPITag1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
         const response = await this.tag_2Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -378,7 +378,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing _tag object
      */
-    async tag_3Raw(requestParameters: Tag2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+    async tag_3Raw(requestParameters: TagInternalAPITag2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -411,7 +411,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing _tag object
      */
-    async tag_3(requestParameters: Tag2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+    async tag_3(requestParameters: TagInternalAPITag2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
         const response = await this.tag_3Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -420,7 +420,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Removes Tag (internal) object.<br />
      * Delete a _tag object
      */
-    async tag_4Raw(requestParameters: Tag3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async tag_4Raw(requestParameters: TagInternalAPITag3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -450,7 +450,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Removes Tag (internal) object.<br />
      * Delete a _tag object
      */
-    async tag_4(requestParameters: Tag3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async tag_4(requestParameters: TagInternalAPITag3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.tag_4Raw(requestParameters, initOverrides);
     }
 
@@ -458,7 +458,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows update of the Tag (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _tag object
      */
-    async tag_5Raw(requestParameters: Tag4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+    async tag_5Raw(requestParameters: TagInternalAPITag4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -491,7 +491,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows update of the Tag (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _tag object
      */
-    async tag_5(requestParameters: Tag4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+    async tag_5(requestParameters: TagInternalAPITag4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
         const response = await this.tag_5Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -500,7 +500,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
      * Create a batch of _tag objects
      */
-    async tag_6Raw(requestParameters: Tag5Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+    async tag_6Raw(requestParameters: TagInternalAPITag5Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         if (requestParameters['updateExisting'] != null) {
@@ -530,7 +530,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
      * Create a batch of _tag objects
      */
-    async tag_6(requestParameters: Tag5Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+    async tag_6(requestParameters: TagInternalAPITag5Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
         const response = await this.tag_6Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -539,7 +539,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows you to update up to 100 objects of Tag (internal) type. <br />
      * Update selected fields of a batch of objects
      */
-    async tag_7Raw(requestParameters: Tag6Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+    async tag_7Raw(requestParameters: TagInternalAPITag6Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -565,7 +565,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows you to update up to 100 objects of Tag (internal) type. <br />
      * Update selected fields of a batch of objects
      */
-    async tag_7(requestParameters: Tag6Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+    async tag_7(requestParameters: TagInternalAPITag6Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
         const response = await this.tag_7Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -574,7 +574,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of _tag objects
      */
-    async tag_8Raw(requestParameters: Tag7Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
+    async tag_8Raw(requestParameters: TagInternalAPITag7Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -600,7 +600,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of _tag objects
      */
-    async tag_8(requestParameters: Tag7Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
+    async tag_8(requestParameters: TagInternalAPITag7Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
         const response = await this.tag_8Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -609,7 +609,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Get ids of removed Tag (internal) objects. <br />
      * Get removed object identifiers
      */
-    async tag_9Raw(requestParameters: Tag8Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async tag_9Raw(requestParameters: TagInternalAPITag8Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const queryParameters: any = {};
 
         if (requestParameters['deletedAfter'] != null) {
@@ -636,7 +636,7 @@ export class TagInternal extends runtime.BaseAPI {
      * Get ids of removed Tag (internal) objects. <br />
      * Get removed object identifiers
      */
-    async tag_9(requestParameters: Tag8Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async tag_9(requestParameters: TagInternalAPITag8Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.tag_9Raw(requestParameters, initOverrides);
         return await response.value();
     }

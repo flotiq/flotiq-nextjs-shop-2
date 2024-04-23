@@ -19,7 +19,9 @@ import {
     ProjectFromJSONTyped,
     ProjectToJSON,
 } from './Project';
-//import { DataSource, DataSourceFromJSON } from './DataSource';
+
+import { DataSource, DataSourceFromJSON } from './DataSource';
+
 
 //import { DataSource } from './DataSource';
 

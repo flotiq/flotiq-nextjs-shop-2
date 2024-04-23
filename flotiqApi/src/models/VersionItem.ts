@@ -25,7 +25,9 @@ import {
     VersionItemAllOfOwnerFromJSONTyped,
     VersionItemAllOfOwnerToJSON,
 } from './VersionItemAllOfOwner';
-//import { DataSource, DataSourceFromJSON } from './DataSource';
+
+import { DataSource, DataSourceFromJSON } from './DataSource';
+
 
 //import { DataSource } from './DataSource';
 

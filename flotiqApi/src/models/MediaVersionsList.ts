@@ -19,7 +19,9 @@ import {
     VersionItemFromJSONTyped,
     VersionItemToJSON,
 } from './VersionItem';
-//import { DataSource, DataSourceFromJSON } from './DataSource';
+
+import { DataSource, DataSourceFromJSON } from './DataSource';
+
 
 //import { DataSource } from './DataSource';
 
