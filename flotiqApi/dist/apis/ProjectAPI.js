@@ -116,10 +116,10 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to create or create and update up to 100 objects of Project type. <br />
      * Create a batch of project objects
      */
-    ProjectAPI.prototype.batchCreateProject = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProjectAPI.prototype.batchCreateProject = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.batchCreateProjectRaw(requestParameters, initOverrides)];
@@ -169,10 +169,10 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Project objects
      */
-    ProjectAPI.prototype.batchDeleteProject = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProjectAPI.prototype.batchDeleteProject = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.batchDeleteProjectRaw(requestParameters, initOverrides)];
@@ -222,10 +222,10 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to update up to 100 objects of Project type. <br />
      * Update selected fields of a batch of objects
      */
-    ProjectAPI.prototype.batchPatchProject = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProjectAPI.prototype.batchPatchProject = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.batchPatchProjectRaw(requestParameters, initOverrides)];
@@ -275,10 +275,10 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to create object of Project type. <br />
      * Create a Project object
      */
-    ProjectAPI.prototype.createProject = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProjectAPI.prototype.createProject = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.createProjectRaw(requestParameters, initOverrides)];
@@ -492,10 +492,10 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Get ids of removed Project objects. <br />
      * Get removed object identifiers
      */
-    ProjectAPI.prototype.getRemovedProject = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProjectAPI.prototype.getRemovedProject = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.getRemovedProjectRaw(requestParameters, initOverrides)];
@@ -564,10 +564,10 @@ var ProjectAPI = /** @class */ (function (_super) {
      * List objects of Project type. <br />
      * List Project objects
      */
-    ProjectAPI.prototype.listProject = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProjectAPI.prototype.listProject = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.listProjectRaw(requestParameters, initOverrides)];

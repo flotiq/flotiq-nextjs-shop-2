@@ -132,10 +132,10 @@ var TagInternalAPI = /** @class */ (function (_super) {
      * List objects of Tag (internal) type. <br />
      * List _tag objects
      */
-    TagInternalAPI.prototype.tag = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TagInternalAPI.prototype.tag = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.tagRaw(requestParameters, initOverrides)];
@@ -306,10 +306,10 @@ var TagInternalAPI = /** @class */ (function (_super) {
      * Allows you to create object of Tag (internal) type. <br />
      * Create a _tag object
      */
-    TagInternalAPI.prototype.tag_1 = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TagInternalAPI.prototype.tag_1 = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.tag_1Raw(requestParameters, initOverrides)];
@@ -579,10 +579,10 @@ var TagInternalAPI = /** @class */ (function (_super) {
      * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
      * Create a batch of _tag objects
      */
-    TagInternalAPI.prototype.tag_6 = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TagInternalAPI.prototype.tag_6 = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.tag_6Raw(requestParameters, initOverrides)];
@@ -632,10 +632,10 @@ var TagInternalAPI = /** @class */ (function (_super) {
      * Allows you to update up to 100 objects of Tag (internal) type. <br />
      * Update selected fields of a batch of objects
      */
-    TagInternalAPI.prototype.tag_7 = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TagInternalAPI.prototype.tag_7 = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.tag_7Raw(requestParameters, initOverrides)];
@@ -685,10 +685,10 @@ var TagInternalAPI = /** @class */ (function (_super) {
      * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of _tag objects
      */
-    TagInternalAPI.prototype.tag_8 = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TagInternalAPI.prototype.tag_8 = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.tag_8Raw(requestParameters, initOverrides)];
@@ -739,10 +739,10 @@ var TagInternalAPI = /** @class */ (function (_super) {
      * Get ids of removed Tag (internal) objects. <br />
      * Get removed object identifiers
      */
-    TagInternalAPI.prototype.tag_9 = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TagInternalAPI.prototype.tag_9 = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.tag_9Raw(requestParameters, initOverrides)];

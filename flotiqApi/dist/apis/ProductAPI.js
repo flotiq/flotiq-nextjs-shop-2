@@ -116,10 +116,10 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to create or create and update up to 100 objects of Product type. <br />
      * Create a batch of product objects
      */
-    ProductAPI.prototype.batchCreateProduct = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProductAPI.prototype.batchCreateProduct = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.batchCreateProductRaw(requestParameters, initOverrides)];
@@ -169,10 +169,10 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Product objects
      */
-    ProductAPI.prototype.batchDeleteProduct = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProductAPI.prototype.batchDeleteProduct = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.batchDeleteProductRaw(requestParameters, initOverrides)];
@@ -222,10 +222,10 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to update up to 100 objects of Product type. <br />
      * Update selected fields of a batch of objects
      */
-    ProductAPI.prototype.batchPatchProduct = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProductAPI.prototype.batchPatchProduct = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.batchPatchProductRaw(requestParameters, initOverrides)];
@@ -275,10 +275,10 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to create object of Product type. <br />
      * Create a Product object
      */
-    ProductAPI.prototype.createProduct = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProductAPI.prototype.createProduct = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.createProductRaw(requestParameters, initOverrides)];
@@ -492,10 +492,10 @@ var ProductAPI = /** @class */ (function (_super) {
      * Get ids of removed Product objects. <br />
      * Get removed object identifiers
      */
-    ProductAPI.prototype.getRemovedProduct = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProductAPI.prototype.getRemovedProduct = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.getRemovedProductRaw(requestParameters, initOverrides)];
@@ -564,10 +564,10 @@ var ProductAPI = /** @class */ (function (_super) {
      * List objects of Product type. <br />
      * List Product objects
      */
-    ProductAPI.prototype.listProduct = function (requestParameters, initOverrides) {
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    ProductAPI.prototype.listProduct = function () {
+        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
+            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.listProductRaw(requestParameters, initOverrides)];
