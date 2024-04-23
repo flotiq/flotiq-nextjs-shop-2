@@ -1,11 +1,14 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'production', // 'development' for development
-    entry: './src/index.ts', // Path to your main TypeScript file
+    mode: 'production',
+    entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        library: 'FlotiqAPI', // This is the global variable name.
+        libraryTarget: 'umd', // Universal Module Definition
+        globalObject: 'this' // Ensures compatibility with both browsers and Node.js
     },
     module: {
         rules: [
@@ -17,8 +20,8 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js'], // Add '.js' to resolve for browser environments
+        extensions: ['.ts', '.js'],
     },
-    devtool: 'source-map', // Optional: Generates source maps
+    devtool: 'source-map',
 };
 
