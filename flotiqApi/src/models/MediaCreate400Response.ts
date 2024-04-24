@@ -19,50 +19,131 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface BatchDeleteTag400Response
+ * @interface MediaCreate400Response
  */
 
 
-export interface BatchDeleteTag400Response {
+export interface MediaCreate400Response {
     /**
      * 
      * @type {Array<string>}
-     * @memberof BatchDeleteTag400Response
+     * @memberof MediaCreate400Response
      */
 
-    errors?: Array<string> ;
+    fileName?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    mimeType?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    size?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    url?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    source?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    extension?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    type?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    id?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    width?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaCreate400Response
+     */
+
+    height?: Array<string> ;
 }
 
 
 
 /**
- * Check if a given object implements the BatchDeleteTag400Response interface.
+ * Check if a given object implements the MediaCreate400Response interface.
  */
-export function instanceOfBatchDeleteTag400Response(value: object): boolean {
+export function instanceOfMediaCreate400Response(value: object): boolean {
     return true;
 }
 
-export function BatchDeleteTag400ResponseFromJSON(json: any): BatchDeleteTag400Response {
-    return BatchDeleteTag400ResponseFromJSONTyped(json, false);
+export function MediaCreate400ResponseFromJSON(json: any): MediaCreate400Response {
+    return MediaCreate400ResponseFromJSONTyped(json, false);
 }
 
-export function BatchDeleteTag400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): BatchDeleteTag400Response  {
+export function MediaCreate400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MediaCreate400Response  {
     if (json == null) {
         return json;
     }
         return {
         
-        'errors': json['errors'] == null ? undefined : json['errors'],
+        'fileName': json['fileName'] == null ? undefined : json['fileName'],
+        'mimeType': json['mimeType'] == null ? undefined : json['mimeType'],
+        'size': json['size'] == null ? undefined : json['size'],
+        'url': json['url'] == null ? undefined : json['url'],
+        'source': json['source'] == null ? undefined : json['source'],
+        'extension': json['extension'] == null ? undefined : json['extension'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'width': json['width'] == null ? undefined : json['width'],
+        'height': json['height'] == null ? undefined : json['height'],
     };
 }
 
-export function BatchDeleteTag400ResponseToJSON(value?: BatchDeleteTag400Response | null): any {
+export function MediaCreate400ResponseToJSON(value?: MediaCreate400Response | null): any {
     if (value == null) {
         return value;
     }
     return {
         
-        'errors': value['errors'],
+        'fileName': value['fileName'],
+        'mimeType': value['mimeType'],
+        'size': value['size'],
+        'url': value['url'],
+        'source': value['source'],
+        'extension': value['extension'],
+        'type': value['type'],
+        'id': value['id'],
+        'width': value['width'],
+        'height': value['height'],
     };
 }
 

@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,34 +11,58 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BatchDeleteProject400ResponseToJSON = exports.BatchDeleteProject400ResponseFromJSONTyped = exports.BatchDeleteProject400ResponseFromJSON = exports.instanceOfBatchDeleteProject400Response = void 0;
+
+import { mapValues } from '../runtime';
+
+//import { DataSource } from './DataSource';
+
 /**
- * Check if a given object implements the BatchDeleteProject400Response interface.
+ * 
+ * @export
+ * @interface MediaDelete400Response
  */
-function instanceOfBatchDeleteProject400Response(value) {
+
+
+export interface MediaDelete400Response {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaDelete400Response
+     */
+
+    errors?: Array<string> ;
+}
+
+
+
+/**
+ * Check if a given object implements the MediaDelete400Response interface.
+ */
+export function instanceOfMediaDelete400Response(value: object): boolean {
     return true;
 }
-exports.instanceOfBatchDeleteProject400Response = instanceOfBatchDeleteProject400Response;
-function BatchDeleteProject400ResponseFromJSON(json) {
-    return BatchDeleteProject400ResponseFromJSONTyped(json, false);
+
+export function MediaDelete400ResponseFromJSON(json: any): MediaDelete400Response {
+    return MediaDelete400ResponseFromJSONTyped(json, false);
 }
-exports.BatchDeleteProject400ResponseFromJSON = BatchDeleteProject400ResponseFromJSON;
-function BatchDeleteProject400ResponseFromJSONTyped(json, ignoreDiscriminator) {
+
+export function MediaDelete400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MediaDelete400Response  {
     if (json == null) {
         return json;
     }
-    return {
+        return {
+        
         'errors': json['errors'] == null ? undefined : json['errors'],
     };
 }
-exports.BatchDeleteProject400ResponseFromJSONTyped = BatchDeleteProject400ResponseFromJSONTyped;
-function BatchDeleteProject400ResponseToJSON(value) {
+
+export function MediaDelete400ResponseToJSON(value?: MediaDelete400Response | null): any {
     if (value == null) {
         return value;
     }
     return {
+        
         'errors': value['errors'],
     };
 }
-exports.BatchDeleteProject400ResponseToJSON = BatchDeleteProject400ResponseToJSON;
+

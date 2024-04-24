@@ -76,10 +76,61 @@ var ProjectAPI = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Removes Project object.<br />
+     * Delete a Project object
+     */
+    ProjectAPI.prototype._deleteRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (requestParameters['id'] == null) {
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling _delete().');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/project/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
+                            method: 'DELETE',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.VoidApiResponse(response)];
+                }
+            });
+        });
+    };
+    /**
+     * Removes Project object.<br />
+     * Delete a Project object
+     */
+    ProjectAPI.prototype._delete = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this._deleteRaw(requestParameters, initOverrides)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
      * Allows you to create or create and update up to 100 objects of Project type. <br />
      * Create a batch of project objects
      */
-    ProjectAPI.prototype.batchCreateProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.batchCreateRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -116,13 +167,13 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to create or create and update up to 100 objects of Project type. <br />
      * Create a batch of project objects
      */
-    ProjectAPI.prototype.batchCreateProject = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.batchCreate = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.batchCreateProjectRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.batchCreateRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -135,7 +186,7 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Project objects
      */
-    ProjectAPI.prototype.batchDeleteProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.batchDeleteRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -160,7 +211,7 @@ var ProjectAPI = /** @class */ (function (_super) {
                         }, initOverrides)];
                     case 3:
                         response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.BatchDeleteMedia200ResponseFromJSON)(jsonValue); })];
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaBatchDelete200ResponseFromJSON)(jsonValue); })];
                 }
             });
         });
@@ -169,13 +220,13 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Project objects
      */
-    ProjectAPI.prototype.batchDeleteProject = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.batchDelete = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.batchDeleteProjectRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.batchDeleteRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -188,7 +239,7 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to update up to 100 objects of Project type. <br />
      * Update selected fields of a batch of objects
      */
-    ProjectAPI.prototype.batchPatchProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.batchPatchRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -222,13 +273,13 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to update up to 100 objects of Project type. <br />
      * Update selected fields of a batch of objects
      */
-    ProjectAPI.prototype.batchPatchProject = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.batchPatch = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.batchPatchProjectRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.batchPatchRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -241,7 +292,7 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to create object of Project type. <br />
      * Create a Project object
      */
-    ProjectAPI.prototype.createProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.createRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -275,13 +326,13 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows you to create object of Project type. <br />
      * Create a Project object
      */
-    ProjectAPI.prototype.createProject = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.create = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createProjectRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -291,68 +342,17 @@ var ProjectAPI = /** @class */ (function (_super) {
         });
     };
     /**
-     * Removes Project object.<br />
-     * Delete a Project object
-     */
-    ProjectAPI.prototype.deleteProjectRaw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling deleteProject().');
-                        }
-                        queryParameters = {};
-                        headerParameters = {};
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/project/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
-                            method: 'DELETE',
-                            headers: headerParameters,
-                            query: queryParameters,
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.VoidApiResponse(response)];
-                }
-            });
-        });
-    };
-    /**
-     * Removes Project object.<br />
-     * Delete a Project object
-     */
-    ProjectAPI.prototype.deleteProject = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteProjectRaw(requestParameters, initOverrides)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
      * Returns all information about Project object. <br />
      * Get Project object by Id
      */
-    ProjectAPI.prototype.getProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.getRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getProject().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling get().');
                         }
                         queryParameters = {};
                         if (requestParameters['hydrate'] != null) {
@@ -383,68 +383,12 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Returns all information about Project object. <br />
      * Get Project object by Id
      */
-    ProjectAPI.prototype.getProject = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.get = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getProjectRaw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Return version of Project object. <br />
-     * Get a specific version of Project object
-     */
-    ProjectAPI.prototype.getProjectVersionsRaw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getProjectVersions().');
-                        }
-                        if (requestParameters['versionId'] == null) {
-                            throw new runtime.RequiredError('versionId', 'Required parameter "versionId" was null or undefined when calling getProjectVersions().');
-                        }
-                        queryParameters = {};
-                        headerParameters = {};
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/project/{id}/version/{versionId}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))).replace("{".concat("versionId", "}"), encodeURIComponent(String(requestParameters['versionId']))),
-                            method: 'GET',
-                            headers: headerParameters,
-                            query: queryParameters,
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.ProjectFromJSON)(jsonValue); })];
-                }
-            });
-        });
-    };
-    /**
-     * Return version of Project object. <br />
-     * Get a specific version of Project object
-     */
-    ProjectAPI.prototype.getProjectVersions = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getProjectVersionsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -457,7 +401,7 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Get ids of removed Project objects. <br />
      * Get removed object identifiers
      */
-    ProjectAPI.prototype.getRemovedProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.getRemovedRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -492,13 +436,69 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Get ids of removed Project objects. <br />
      * Get removed object identifiers
      */
-    ProjectAPI.prototype.getRemovedProject = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.getRemoved = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getRemovedProjectRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getRemovedRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Return version of Project object. <br />
+     * Get a specific version of Project object
+     */
+    ProjectAPI.prototype.getVersionsRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (requestParameters['id'] == null) {
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getVersions().');
+                        }
+                        if (requestParameters['versionId'] == null) {
+                            throw new runtime.RequiredError('versionId', 'Required parameter "versionId" was null or undefined when calling getVersions().');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/project/{id}/version/{versionId}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))).replace("{".concat("versionId", "}"), encodeURIComponent(String(requestParameters['versionId']))),
+                            method: 'GET',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.ProjectFromJSON)(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Return version of Project object. <br />
+     * Get a specific version of Project object
+     */
+    ProjectAPI.prototype.getVersions = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getVersionsRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -511,7 +511,7 @@ var ProjectAPI = /** @class */ (function (_super) {
      * List objects of Project type. <br />
      * List Project objects
      */
-    ProjectAPI.prototype.listProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.listRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -564,13 +564,13 @@ var ProjectAPI = /** @class */ (function (_super) {
      * List objects of Project type. <br />
      * List Project objects
      */
-    ProjectAPI.prototype.listProject = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.list = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.listProjectRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.listRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -583,14 +583,14 @@ var ProjectAPI = /** @class */ (function (_super) {
      * List objects versions of Project type. <br />
      * List all versions of a Project object
      */
-    ProjectAPI.prototype.listProjectVersionRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.listVersionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling listProjectVersion().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling listVersion().');
                         }
                         queryParameters = {};
                         if (requestParameters['page'] != null) {
@@ -630,12 +630,12 @@ var ProjectAPI = /** @class */ (function (_super) {
      * List objects versions of Project type. <br />
      * List all versions of a Project object
      */
-    ProjectAPI.prototype.listProjectVersion = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.listVersion = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.listProjectVersionRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.listVersionRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -648,14 +648,14 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows update of the Project object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Project object
      */
-    ProjectAPI.prototype.patchProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.patchRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling patchProject().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling patch().');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -685,12 +685,12 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows update of the Project object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Project object
      */
-    ProjectAPI.prototype.patchProject = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.patch = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.patchProjectRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.patchRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -703,14 +703,14 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows update of the Project object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Project object
      */
-    ProjectAPI.prototype.updateProjectRaw = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.updateRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling updateProject().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling update().');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -740,12 +740,12 @@ var ProjectAPI = /** @class */ (function (_super) {
      * Allows update of the Project object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Project object
      */
-    ProjectAPI.prototype.updateProject = function (requestParameters, initOverrides) {
+    ProjectAPI.prototype.update = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateProjectRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

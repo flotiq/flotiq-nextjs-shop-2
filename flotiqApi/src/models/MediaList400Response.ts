@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,34 +11,58 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BatchDeleteProduct400ResponseToJSON = exports.BatchDeleteProduct400ResponseFromJSONTyped = exports.BatchDeleteProduct400ResponseFromJSON = exports.instanceOfBatchDeleteProduct400Response = void 0;
+
+import { mapValues } from '../runtime';
+
+//import { DataSource } from './DataSource';
+
 /**
- * Check if a given object implements the BatchDeleteProduct400Response interface.
+ * 
+ * @export
+ * @interface MediaList400Response
  */
-function instanceOfBatchDeleteProduct400Response(value) {
+
+
+export interface MediaList400Response {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaList400Response
+     */
+
+    filters?: Array<string> ;
+}
+
+
+
+/**
+ * Check if a given object implements the MediaList400Response interface.
+ */
+export function instanceOfMediaList400Response(value: object): boolean {
     return true;
 }
-exports.instanceOfBatchDeleteProduct400Response = instanceOfBatchDeleteProduct400Response;
-function BatchDeleteProduct400ResponseFromJSON(json) {
-    return BatchDeleteProduct400ResponseFromJSONTyped(json, false);
+
+export function MediaList400ResponseFromJSON(json: any): MediaList400Response {
+    return MediaList400ResponseFromJSONTyped(json, false);
 }
-exports.BatchDeleteProduct400ResponseFromJSON = BatchDeleteProduct400ResponseFromJSON;
-function BatchDeleteProduct400ResponseFromJSONTyped(json, ignoreDiscriminator) {
+
+export function MediaList400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MediaList400Response  {
     if (json == null) {
         return json;
     }
-    return {
-        'errors': json['errors'] == null ? undefined : json['errors'],
+        return {
+        
+        'filters': json['filters'] == null ? undefined : json['filters'],
     };
 }
-exports.BatchDeleteProduct400ResponseFromJSONTyped = BatchDeleteProduct400ResponseFromJSONTyped;
-function BatchDeleteProduct400ResponseToJSON(value) {
+
+export function MediaList400ResponseToJSON(value?: MediaList400Response | null): any {
     if (value == null) {
         return value;
     }
     return {
-        'errors': value['errors'],
+        
+        'filters': value['filters'],
     };
 }
-exports.BatchDeleteProduct400ResponseToJSON = BatchDeleteProduct400ResponseToJSON;
+

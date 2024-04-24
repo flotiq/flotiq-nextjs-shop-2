@@ -15,40 +15,36 @@
 
 import * as runtime from '../runtime';
 import type {
-  BatchDeleteMedia200Response,
-  BatchDeleteTag400Response,
   BatchResponseError,
   BatchResponseSuccess,
-  CreateTag400Response,
-  DeleteMedia400Response,
-  GetRemovedMedia400Response,
-  ListMedia400Response,
+  MediaBatchDelete200Response,
+  MediaDelete400Response,
+  MediaGetRemoved400Response,
+  MediaList400Response,
   Model401Response,
   Model403Response,
   Model404Response,
   Tag,
+  TagBatchDelete400Response,
+  TagCreate400Response,
   TagList,
   TagVersionsList,
   TagWithoutInternal,
   TagWithoutRequired,
 } from '../models/index';
 import {
-    BatchDeleteMedia200ResponseFromJSON,
-    BatchDeleteMedia200ResponseToJSON,
-    BatchDeleteTag400ResponseFromJSON,
-    BatchDeleteTag400ResponseToJSON,
     BatchResponseErrorFromJSON,
     BatchResponseErrorToJSON,
     BatchResponseSuccessFromJSON,
     BatchResponseSuccessToJSON,
-    CreateTag400ResponseFromJSON,
-    CreateTag400ResponseToJSON,
-    DeleteMedia400ResponseFromJSON,
-    DeleteMedia400ResponseToJSON,
-    GetRemovedMedia400ResponseFromJSON,
-    GetRemovedMedia400ResponseToJSON,
-    ListMedia400ResponseFromJSON,
-    ListMedia400ResponseToJSON,
+    MediaBatchDelete200ResponseFromJSON,
+    MediaBatchDelete200ResponseToJSON,
+    MediaDelete400ResponseFromJSON,
+    MediaDelete400ResponseToJSON,
+    MediaGetRemoved400ResponseFromJSON,
+    MediaGetRemoved400ResponseToJSON,
+    MediaList400ResponseFromJSON,
+    MediaList400ResponseToJSON,
     Model401ResponseFromJSON,
     Model401ResponseToJSON,
     Model403ResponseFromJSON,
@@ -57,6 +53,10 @@ import {
     Model404ResponseToJSON,
     TagFromJSON,
     TagToJSON,
+    TagBatchDelete400ResponseFromJSON,
+    TagBatchDelete400ResponseToJSON,
+    TagCreate400ResponseFromJSON,
+    TagCreate400ResponseToJSON,
     TagListFromJSON,
     TagListToJSON,
     TagVersionsListFromJSON,
@@ -67,7 +67,42 @@ import {
     TagWithoutRequiredToJSON,
 } from '../models/index';
 
-export interface TagInternalAPITagRequest {
+export interface TagInternalAPIDeleteRequest {
+    id: string;
+}
+
+export interface TagInternalAPIBatchCreateRequest {
+    updateExisting?: boolean;
+    TagWithoutInternal?: Array<TagWithoutInternal>;
+}
+
+export interface TagInternalAPIBatchDeleteRequest {
+    request_body?: Array<string>;
+}
+
+export interface TagInternalAPIBatchPatchRequest {
+    TagWithoutInternal?: Array<TagWithoutInternal>;
+}
+
+export interface TagInternalAPICreateRequest {
+    TagWithoutInternal?: TagWithoutInternal;
+}
+
+export interface TagInternalAPIGetRequest {
+    id: string;
+    hydrate?: number;
+}
+
+export interface TagInternalAPIGetRemovedRequest {
+    deletedAfter?: string;
+}
+
+export interface TagInternalAPIGetVersionsRequest {
+    id: string;
+    versionId: string;
+}
+
+export interface TagInternalAPIListRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -77,7 +112,7 @@ export interface TagInternalAPITagRequest {
     ids?: Array<string>;
 }
 
-export interface TagInternalAPITagVersionRequest {
+export interface TagInternalAPIListVersionRequest {
     id: string;
     page?: number;
     limit?: number;
@@ -85,49 +120,14 @@ export interface TagInternalAPITagVersionRequest {
     order_direction?: string;
 }
 
-export interface TagInternalAPITagVersionsRequest {
-    id: string;
-    versionId: string;
-}
-
-export interface TagInternalAPITag0Request {
-    TagWithoutInternal?: TagWithoutInternal;
-}
-
-export interface TagInternalAPITag1Request {
-    id: string;
-    hydrate?: number;
-}
-
-export interface TagInternalAPITag2Request {
-    id: string;
-    TagWithoutInternal?: TagWithoutInternal;
-}
-
-export interface TagInternalAPITag3Request {
-    id: string;
-}
-
-export interface TagInternalAPITag4Request {
+export interface TagInternalAPIPatchRequest {
     id: string;
     TagWithoutRequired?: TagWithoutRequired;
 }
 
-export interface TagInternalAPITag5Request {
-    updateExisting?: boolean;
-    TagWithoutInternal?: Array<TagWithoutInternal>;
-}
-
-export interface TagInternalAPITag6Request {
-    TagWithoutInternal?: Array<TagWithoutInternal>;
-}
-
-export interface TagInternalAPITag7Request {
-    request_body?: Array<string>;
-}
-
-export interface TagInternalAPITag8Request {
-    deletedAfter?: string;
+export interface TagInternalAPIUpdateRequest {
+    id: string;
+    TagWithoutInternal?: TagWithoutInternal;
 }
 
 /**
@@ -136,10 +136,317 @@ export interface TagInternalAPITag8Request {
 export class TagInternalAPI extends runtime.BaseAPI {
 
     /**
+     * Removes Tag (internal) object.<br />
+     * Delete a _tag object
+     */
+    async _deleteRaw(requestParameters: TagInternalAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling _delete().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_tag/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Removes Tag (internal) object.<br />
+     * Delete a _tag object
+     */
+    async _delete(requestParameters: TagInternalAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this._deleteRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
+     * Create a batch of _tag objects
+     */
+    async batchCreateRaw(requestParameters: TagInternalAPIBatchCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['updateExisting'] != null) {
+            queryParameters['updateExisting'] = requestParameters['updateExisting'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_tag/batch`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['TagWithoutInternal']!.map(TagWithoutInternalToJSON),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BatchResponseSuccessFromJSON(jsonValue));
+    }
+
+    /**
+     * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
+     * Create a batch of _tag objects
+     */
+    async batchCreate(requestParameters: TagInternalAPIBatchCreateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+        const response = await this.batchCreateRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of _tag objects
+     */
+    async batchDeleteRaw(requestParameters: TagInternalAPIBatchDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaBatchDelete200Response>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_tag/batch-delete`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['request_body'],
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MediaBatchDelete200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of _tag objects
+     */
+    async batchDelete(requestParameters: TagInternalAPIBatchDeleteRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaBatchDelete200Response> {
+        const response = await this.batchDeleteRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Allows you to update up to 100 objects of Tag (internal) type. <br />
+     * Update selected fields of a batch of objects
+     */
+    async batchPatchRaw(requestParameters: TagInternalAPIBatchPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_tag/batch`,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['TagWithoutInternal']!.map(TagWithoutInternalToJSON),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BatchResponseSuccessFromJSON(jsonValue));
+    }
+
+    /**
+     * Allows you to update up to 100 objects of Tag (internal) type. <br />
+     * Update selected fields of a batch of objects
+     */
+    async batchPatch(requestParameters: TagInternalAPIBatchPatchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+        const response = await this.batchPatchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Allows you to create object of Tag (internal) type. <br />
+     * Create a _tag object
+     */
+    async createRaw(requestParameters: TagInternalAPICreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_tag`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TagWithoutInternalToJSON(requestParameters['TagWithoutInternal']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
+    }
+
+    /**
+     * Allows you to create object of Tag (internal) type. <br />
+     * Create a _tag object
+     */
+    async create(requestParameters: TagInternalAPICreateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+        const response = await this.createRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Returns all information about Tag (internal) object. <br />
+     * Get _tag object by Id
+     */
+    async getRaw(requestParameters: TagInternalAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling get().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['hydrate'] != null) {
+            queryParameters['hydrate'] = requestParameters['hydrate'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_tag/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns all information about Tag (internal) object. <br />
+     * Get _tag object by Id
+     */
+    async get(requestParameters: TagInternalAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+        const response = await this.getRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get ids of removed Tag (internal) objects. <br />
+     * Get removed object identifiers
+     */
+    async getRemovedRaw(requestParameters: TagInternalAPIGetRemovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['deletedAfter'] != null) {
+            queryParameters['deletedAfter'] = requestParameters['deletedAfter'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_tag/removed`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Get ids of removed Tag (internal) objects. <br />
+     * Get removed object identifiers
+     */
+    async getRemoved(requestParameters: TagInternalAPIGetRemovedRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.getRemovedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Return version of Tag (internal) object. <br />
+     * Get a specific version of _tag object
+     */
+    async getVersionsRaw(requestParameters: TagInternalAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getVersions().'
+            );
+        }
+
+        if (requestParameters['versionId'] == null) {
+            throw new runtime.RequiredError(
+                'versionId',
+                'Required parameter "versionId" was null or undefined when calling getVersions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_tag/{id}/version/{versionId}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))).replace(`{${"versionId"}}`, encodeURIComponent(String(requestParameters['versionId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
+    }
+
+    /**
+     * Return version of Tag (internal) object. <br />
+     * Get a specific version of _tag object
+     */
+    async getVersions(requestParameters: TagInternalAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+        const response = await this.getVersionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List objects of Tag (internal) type. <br />
      * List _tag objects
      */
-    async tagRaw(requestParameters: TagInternalAPITagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagList>> {
+    async listRaw(requestParameters: TagInternalAPIListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagList>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -190,8 +497,8 @@ export class TagInternalAPI extends runtime.BaseAPI {
      * List objects of Tag (internal) type. <br />
      * List _tag objects
      */
-    async tag(requestParameters: TagInternalAPITagRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagList> {
-        const response = await this.tagRaw(requestParameters, initOverrides);
+    async list(requestParameters: TagInternalAPIListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagList> {
+        const response = await this.listRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -199,11 +506,11 @@ export class TagInternalAPI extends runtime.BaseAPI {
      * List objects versions of Tag (internal) type. <br />
      * List all versions of a _tag object
      */
-    async tagVersionRaw(requestParameters: TagInternalAPITagVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagVersionsList>> {
+    async listVersionRaw(requestParameters: TagInternalAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagVersionsList>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling tagVersion().'
+                'Required parameter "id" was null or undefined when calling listVersion().'
             );
         }
 
@@ -245,224 +552,20 @@ export class TagInternalAPI extends runtime.BaseAPI {
      * List objects versions of Tag (internal) type. <br />
      * List all versions of a _tag object
      */
-    async tagVersion(requestParameters: TagInternalAPITagVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagVersionsList> {
-        const response = await this.tagVersionRaw(requestParameters, initOverrides);
+    async listVersion(requestParameters: TagInternalAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagVersionsList> {
+        const response = await this.listVersionRaw(requestParameters, initOverrides);
         return await response.value();
-    }
-
-    /**
-     * Return version of Tag (internal) object. <br />
-     * Get a specific version of _tag object
-     */
-    async tagVersionsRaw(requestParameters: TagInternalAPITagVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling tagVersions().'
-            );
-        }
-
-        if (requestParameters['versionId'] == null) {
-            throw new runtime.RequiredError(
-                'versionId',
-                'Required parameter "versionId" was null or undefined when calling tagVersions().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_tag/{id}/version/{versionId}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))).replace(`{${"versionId"}}`, encodeURIComponent(String(requestParameters['versionId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
-    }
-
-    /**
-     * Return version of Tag (internal) object. <br />
-     * Get a specific version of _tag object
-     */
-    async tagVersions(requestParameters: TagInternalAPITagVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
-        const response = await this.tagVersionsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows you to create object of Tag (internal) type. <br />
-     * Create a _tag object
-     */
-    async tag_1Raw(requestParameters: TagInternalAPITag0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_tag`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: TagWithoutInternalToJSON(requestParameters['TagWithoutInternal']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows you to create object of Tag (internal) type. <br />
-     * Create a _tag object
-     */
-    async tag_1(requestParameters: TagInternalAPITag0Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
-        const response = await this.tag_1Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Returns all information about Tag (internal) object. <br />
-     * Get _tag object by Id
-     */
-    async tag_2Raw(requestParameters: TagInternalAPITag1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling tag_2().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['hydrate'] != null) {
-            queryParameters['hydrate'] = requestParameters['hydrate'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_tag/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns all information about Tag (internal) object. <br />
-     * Get _tag object by Id
-     */
-    async tag_2(requestParameters: TagInternalAPITag1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
-        const response = await this.tag_2Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
-     * Update existing _tag object
-     */
-    async tag_3Raw(requestParameters: TagInternalAPITag2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling tag_3().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_tag/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: TagWithoutInternalToJSON(requestParameters['TagWithoutInternal']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
-     * Update existing _tag object
-     */
-    async tag_3(requestParameters: TagInternalAPITag2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
-        const response = await this.tag_3Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Removes Tag (internal) object.<br />
-     * Delete a _tag object
-     */
-    async tag_4Raw(requestParameters: TagInternalAPITag3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling tag_4().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_tag/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Removes Tag (internal) object.<br />
-     * Delete a _tag object
-     */
-    async tag_4(requestParameters: TagInternalAPITag3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.tag_4Raw(requestParameters, initOverrides);
     }
 
     /**
      * Allows update of the Tag (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _tag object
      */
-    async tag_5Raw(requestParameters: TagInternalAPITag4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+    async patchRaw(requestParameters: TagInternalAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling tag_5().'
+                'Required parameter "id" was null or undefined when calling patch().'
             );
         }
 
@@ -491,55 +594,23 @@ export class TagInternalAPI extends runtime.BaseAPI {
      * Allows update of the Tag (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _tag object
      */
-    async tag_5(requestParameters: TagInternalAPITag4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
-        const response = await this.tag_5Raw(requestParameters, initOverrides);
+    async patch(requestParameters: TagInternalAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+        const response = await this.patchRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
-     * Create a batch of _tag objects
+     * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
+     * Update existing _tag object
      */
-    async tag_6Raw(requestParameters: TagInternalAPITag5Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['updateExisting'] != null) {
-            queryParameters['updateExisting'] = requestParameters['updateExisting'];
+    async updateRaw(requestParameters: TagInternalAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling update().'
+            );
         }
 
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_tag/batch`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['TagWithoutInternal']!.map(TagWithoutInternalToJSON),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => BatchResponseSuccessFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
-     * Create a batch of _tag objects
-     */
-    async tag_6(requestParameters: TagInternalAPITag5Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
-        const response = await this.tag_6Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows you to update up to 100 objects of Tag (internal) type. <br />
-     * Update selected fields of a batch of objects
-     */
-    async tag_7Raw(requestParameters: TagInternalAPITag6Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -551,93 +622,22 @@ export class TagInternalAPI extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/content/_tag/batch`,
-            method: 'PATCH',
+            path: `/api/v1/content/_tag/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['TagWithoutInternal']!.map(TagWithoutInternalToJSON),
+            body: TagWithoutInternalToJSON(requestParameters['TagWithoutInternal']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => BatchResponseSuccessFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => TagFromJSON(jsonValue));
     }
 
     /**
-     * Allows you to update up to 100 objects of Tag (internal) type. <br />
-     * Update selected fields of a batch of objects
+     * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
+     * Update existing _tag object
      */
-    async tag_7(requestParameters: TagInternalAPITag6Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
-        const response = await this.tag_7Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of _tag objects
-     */
-    async tag_8Raw(requestParameters: TagInternalAPITag7Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_tag/batch-delete`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['request_body'],
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => BatchDeleteMedia200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of _tag objects
-     */
-    async tag_8(requestParameters: TagInternalAPITag7Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
-        const response = await this.tag_8Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get ids of removed Tag (internal) objects. <br />
-     * Get removed object identifiers
-     */
-    async tag_9Raw(requestParameters: TagInternalAPITag8Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['deletedAfter'] != null) {
-            queryParameters['deletedAfter'] = requestParameters['deletedAfter'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_tag/removed`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse<any>(response);
-    }
-
-    /**
-     * Get ids of removed Tag (internal) objects. <br />
-     * Get removed object identifiers
-     */
-    async tag_9(requestParameters: TagInternalAPITag8Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
-        const response = await this.tag_9Raw(requestParameters, initOverrides);
+    async update(requestParameters: TagInternalAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag> {
+        const response = await this.updateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -10,35 +10,35 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { BatchDeleteMedia200Response, BatchResponseSuccess, Product, ProductList, ProductVersionsList, ProductWithoutInternal, ProductWithoutRequired } from '../models/index';
-export interface ProductAPIBatchCreateProductRequest {
+import type { BatchResponseSuccess, MediaBatchDelete200Response, Product, ProductList, ProductVersionsList, ProductWithoutInternal, ProductWithoutRequired } from '../models/index';
+export interface ProductAPIDeleteRequest {
+    id: string;
+}
+export interface ProductAPIBatchCreateRequest {
     updateExisting?: boolean;
     ProductWithoutInternal?: Array<ProductWithoutInternal>;
 }
-export interface ProductAPIBatchDeleteProductRequest {
+export interface ProductAPIBatchDeleteRequest {
     request_body?: Array<string>;
 }
-export interface ProductAPIBatchPatchProductRequest {
+export interface ProductAPIBatchPatchRequest {
     ProductWithoutInternal?: Array<ProductWithoutInternal>;
 }
-export interface ProductAPICreateProductRequest {
+export interface ProductAPICreateRequest {
     ProductWithoutInternal?: ProductWithoutInternal;
 }
-export interface ProductAPIDeleteProductRequest {
-    id: string;
-}
-export interface ProductAPIGetProductRequest {
+export interface ProductAPIGetRequest {
     id: string;
     hydrate?: number;
 }
-export interface ProductAPIGetProductVersionsRequest {
+export interface ProductAPIGetRemovedRequest {
+    deletedAfter?: string;
+}
+export interface ProductAPIGetVersionsRequest {
     id: string;
     versionId: string;
 }
-export interface ProductAPIGetRemovedProductRequest {
-    deletedAfter?: string;
-}
-export interface ProductAPIListProductRequest {
+export interface ProductAPIListRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -47,18 +47,18 @@ export interface ProductAPIListProductRequest {
     filters?: string;
     ids?: Array<string>;
 }
-export interface ProductAPIListProductVersionRequest {
+export interface ProductAPIListVersionRequest {
     id: string;
     page?: number;
     limit?: number;
     order_by?: string;
     order_direction?: string;
 }
-export interface ProductAPIPatchProductRequest {
+export interface ProductAPIPatchRequest {
     id: string;
     ProductWithoutRequired?: ProductWithoutRequired;
 }
-export interface ProductAPIUpdateProductRequest {
+export interface ProductAPIUpdateRequest {
     id: string;
     ProductWithoutInternal?: ProductWithoutInternal;
 }
@@ -67,123 +67,123 @@ export interface ProductAPIUpdateProductRequest {
  */
 export declare class ProductAPI extends runtime.BaseAPI {
     /**
-     * Allows you to create or create and update up to 100 objects of Product type. <br />
-     * Create a batch of product objects
+     * Removes Product object.<br />
+     * Delete a Product object
      */
-    batchCreateProductRaw(requestParameters: ProductAPIBatchCreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
-    /**
-     * Allows you to create or create and update up to 100 objects of Product type. <br />
-     * Create a batch of product objects
-     */
-    batchCreateProduct(requestParameters?: ProductAPIBatchCreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
-    /**
-     * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of Product objects
-     */
-    batchDeleteProductRaw(requestParameters: ProductAPIBatchDeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>>;
-    /**
-     * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of Product objects
-     */
-    batchDeleteProduct(requestParameters?: ProductAPIBatchDeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response>;
-    /**
-     * Allows you to update up to 100 objects of Product type. <br />
-     * Update selected fields of a batch of objects
-     */
-    batchPatchProductRaw(requestParameters: ProductAPIBatchPatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
-    /**
-     * Allows you to update up to 100 objects of Product type. <br />
-     * Update selected fields of a batch of objects
-     */
-    batchPatchProduct(requestParameters?: ProductAPIBatchPatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
-    /**
-     * Allows you to create object of Product type. <br />
-     * Create a Product object
-     */
-    createProductRaw(requestParameters: ProductAPICreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
-    /**
-     * Allows you to create object of Product type. <br />
-     * Create a Product object
-     */
-    createProduct(requestParameters?: ProductAPICreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
+    _deleteRaw(requestParameters: ProductAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      * Removes Product object.<br />
      * Delete a Product object
      */
-    deleteProductRaw(requestParameters: ProductAPIDeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    _delete(requestParameters: ProductAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Removes Product object.<br />
-     * Delete a Product object
+     * Allows you to create or create and update up to 100 objects of Product type. <br />
+     * Create a batch of product objects
      */
-    deleteProduct(requestParameters: ProductAPIDeleteProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    batchCreateRaw(requestParameters: ProductAPIBatchCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
+    /**
+     * Allows you to create or create and update up to 100 objects of Product type. <br />
+     * Create a batch of product objects
+     */
+    batchCreate(requestParameters?: ProductAPIBatchCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
+    /**
+     * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of Product objects
+     */
+    batchDeleteRaw(requestParameters: ProductAPIBatchDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaBatchDelete200Response>>;
+    /**
+     * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of Product objects
+     */
+    batchDelete(requestParameters?: ProductAPIBatchDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaBatchDelete200Response>;
+    /**
+     * Allows you to update up to 100 objects of Product type. <br />
+     * Update selected fields of a batch of objects
+     */
+    batchPatchRaw(requestParameters: ProductAPIBatchPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
+    /**
+     * Allows you to update up to 100 objects of Product type. <br />
+     * Update selected fields of a batch of objects
+     */
+    batchPatch(requestParameters?: ProductAPIBatchPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
+    /**
+     * Allows you to create object of Product type. <br />
+     * Create a Product object
+     */
+    createRaw(requestParameters: ProductAPICreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
+    /**
+     * Allows you to create object of Product type. <br />
+     * Create a Product object
+     */
+    create(requestParameters?: ProductAPICreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
     /**
      * Returns all information about Product object. <br />
      * Get Product object by Id
      */
-    getProductRaw(requestParameters: ProductAPIGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
+    getRaw(requestParameters: ProductAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
     /**
      * Returns all information about Product object. <br />
      * Get Product object by Id
      */
-    getProduct(requestParameters: ProductAPIGetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
-    /**
-     * Return version of Product object. <br />
-     * Get a specific version of Product object
-     */
-    getProductVersionsRaw(requestParameters: ProductAPIGetProductVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
-    /**
-     * Return version of Product object. <br />
-     * Get a specific version of Product object
-     */
-    getProductVersions(requestParameters: ProductAPIGetProductVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
+    get(requestParameters: ProductAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
     /**
      * Get ids of removed Product objects. <br />
      * Get removed object identifiers
      */
-    getRemovedProductRaw(requestParameters: ProductAPIGetRemovedProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getRemovedRaw(requestParameters: ProductAPIGetRemovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
     /**
      * Get ids of removed Product objects. <br />
      * Get removed object identifiers
      */
-    getRemovedProduct(requestParameters?: ProductAPIGetRemovedProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getRemoved(requestParameters?: ProductAPIGetRemovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    /**
+     * Return version of Product object. <br />
+     * Get a specific version of Product object
+     */
+    getVersionsRaw(requestParameters: ProductAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
+    /**
+     * Return version of Product object. <br />
+     * Get a specific version of Product object
+     */
+    getVersions(requestParameters: ProductAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
     /**
      * List objects of Product type. <br />
      * List Product objects
      */
-    listProductRaw(requestParameters: ProductAPIListProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductList>>;
+    listRaw(requestParameters: ProductAPIListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductList>>;
     /**
      * List objects of Product type. <br />
      * List Product objects
      */
-    listProduct(requestParameters?: ProductAPIListProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductList>;
+    list(requestParameters?: ProductAPIListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductList>;
     /**
      * List objects versions of Product type. <br />
      * List all versions of a Product object
      */
-    listProductVersionRaw(requestParameters: ProductAPIListProductVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVersionsList>>;
+    listVersionRaw(requestParameters: ProductAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductVersionsList>>;
     /**
      * List objects versions of Product type. <br />
      * List all versions of a Product object
      */
-    listProductVersion(requestParameters: ProductAPIListProductVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVersionsList>;
+    listVersion(requestParameters: ProductAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductVersionsList>;
     /**
      * Allows update of the Product object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Product object
      */
-    patchProductRaw(requestParameters: ProductAPIPatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
+    patchRaw(requestParameters: ProductAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
     /**
      * Allows update of the Product object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Product object
      */
-    patchProduct(requestParameters: ProductAPIPatchProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
+    patch(requestParameters: ProductAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
     /**
      * Allows update of the Product object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Product object
      */
-    updateProductRaw(requestParameters: ProductAPIUpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
+    updateRaw(requestParameters: ProductAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Product>>;
     /**
      * Allows update of the Product object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Product object
      */
-    updateProduct(requestParameters: ProductAPIUpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
+    update(requestParameters: ProductAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Product>;
 }

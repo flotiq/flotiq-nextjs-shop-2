@@ -76,10 +76,61 @@ var ProductAPI = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Removes Product object.<br />
+     * Delete a Product object
+     */
+    ProductAPI.prototype._deleteRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (requestParameters['id'] == null) {
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling _delete().');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/product/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
+                            method: 'DELETE',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.VoidApiResponse(response)];
+                }
+            });
+        });
+    };
+    /**
+     * Removes Product object.<br />
+     * Delete a Product object
+     */
+    ProductAPI.prototype._delete = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this._deleteRaw(requestParameters, initOverrides)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
      * Allows you to create or create and update up to 100 objects of Product type. <br />
      * Create a batch of product objects
      */
-    ProductAPI.prototype.batchCreateProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.batchCreateRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -116,13 +167,13 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to create or create and update up to 100 objects of Product type. <br />
      * Create a batch of product objects
      */
-    ProductAPI.prototype.batchCreateProduct = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProductAPI.prototype.batchCreate = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.batchCreateProductRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.batchCreateRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -135,7 +186,7 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Product objects
      */
-    ProductAPI.prototype.batchDeleteProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.batchDeleteRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -160,7 +211,7 @@ var ProductAPI = /** @class */ (function (_super) {
                         }, initOverrides)];
                     case 3:
                         response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.BatchDeleteMedia200ResponseFromJSON)(jsonValue); })];
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaBatchDelete200ResponseFromJSON)(jsonValue); })];
                 }
             });
         });
@@ -169,13 +220,13 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to delete up to 100 objects of Product type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of Product objects
      */
-    ProductAPI.prototype.batchDeleteProduct = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProductAPI.prototype.batchDelete = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.batchDeleteProductRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.batchDeleteRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -188,7 +239,7 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to update up to 100 objects of Product type. <br />
      * Update selected fields of a batch of objects
      */
-    ProductAPI.prototype.batchPatchProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.batchPatchRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -222,13 +273,13 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to update up to 100 objects of Product type. <br />
      * Update selected fields of a batch of objects
      */
-    ProductAPI.prototype.batchPatchProduct = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProductAPI.prototype.batchPatch = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.batchPatchProductRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.batchPatchRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -241,7 +292,7 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to create object of Product type. <br />
      * Create a Product object
      */
-    ProductAPI.prototype.createProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.createRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -275,13 +326,13 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows you to create object of Product type. <br />
      * Create a Product object
      */
-    ProductAPI.prototype.createProduct = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProductAPI.prototype.create = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createProductRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.createRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -291,68 +342,17 @@ var ProductAPI = /** @class */ (function (_super) {
         });
     };
     /**
-     * Removes Product object.<br />
-     * Delete a Product object
-     */
-    ProductAPI.prototype.deleteProductRaw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling deleteProduct().');
-                        }
-                        queryParameters = {};
-                        headerParameters = {};
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/product/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
-                            method: 'DELETE',
-                            headers: headerParameters,
-                            query: queryParameters,
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.VoidApiResponse(response)];
-                }
-            });
-        });
-    };
-    /**
-     * Removes Product object.<br />
-     * Delete a Product object
-     */
-    ProductAPI.prototype.deleteProduct = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteProductRaw(requestParameters, initOverrides)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
      * Returns all information about Product object. <br />
      * Get Product object by Id
      */
-    ProductAPI.prototype.getProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.getRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getProduct().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling get().');
                         }
                         queryParameters = {};
                         if (requestParameters['hydrate'] != null) {
@@ -383,68 +383,12 @@ var ProductAPI = /** @class */ (function (_super) {
      * Returns all information about Product object. <br />
      * Get Product object by Id
      */
-    ProductAPI.prototype.getProduct = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.get = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getProductRaw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Return version of Product object. <br />
-     * Get a specific version of Product object
-     */
-    ProductAPI.prototype.getProductVersionsRaw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getProductVersions().');
-                        }
-                        if (requestParameters['versionId'] == null) {
-                            throw new runtime.RequiredError('versionId', 'Required parameter "versionId" was null or undefined when calling getProductVersions().');
-                        }
-                        queryParameters = {};
-                        headerParameters = {};
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/product/{id}/version/{versionId}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))).replace("{".concat("versionId", "}"), encodeURIComponent(String(requestParameters['versionId']))),
-                            method: 'GET',
-                            headers: headerParameters,
-                            query: queryParameters,
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.ProductFromJSON)(jsonValue); })];
-                }
-            });
-        });
-    };
-    /**
-     * Return version of Product object. <br />
-     * Get a specific version of Product object
-     */
-    ProductAPI.prototype.getProductVersions = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getProductVersionsRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -457,7 +401,7 @@ var ProductAPI = /** @class */ (function (_super) {
      * Get ids of removed Product objects. <br />
      * Get removed object identifiers
      */
-    ProductAPI.prototype.getRemovedProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.getRemovedRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -492,13 +436,69 @@ var ProductAPI = /** @class */ (function (_super) {
      * Get ids of removed Product objects. <br />
      * Get removed object identifiers
      */
-    ProductAPI.prototype.getRemovedProduct = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProductAPI.prototype.getRemoved = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getRemovedProductRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.getRemovedRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Return version of Product object. <br />
+     * Get a specific version of Product object
+     */
+    ProductAPI.prototype.getVersionsRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (requestParameters['id'] == null) {
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getVersions().');
+                        }
+                        if (requestParameters['versionId'] == null) {
+                            throw new runtime.RequiredError('versionId', 'Required parameter "versionId" was null or undefined when calling getVersions().');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/product/{id}/version/{versionId}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))).replace("{".concat("versionId", "}"), encodeURIComponent(String(requestParameters['versionId']))),
+                            method: 'GET',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.ProductFromJSON)(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Return version of Product object. <br />
+     * Get a specific version of Product object
+     */
+    ProductAPI.prototype.getVersions = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getVersionsRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -511,7 +511,7 @@ var ProductAPI = /** @class */ (function (_super) {
      * List objects of Product type. <br />
      * List Product objects
      */
-    ProductAPI.prototype.listProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.listRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -564,13 +564,13 @@ var ProductAPI = /** @class */ (function (_super) {
      * List objects of Product type. <br />
      * List Product objects
      */
-    ProductAPI.prototype.listProduct = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    ProductAPI.prototype.list = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.listProductRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.listRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -583,14 +583,14 @@ var ProductAPI = /** @class */ (function (_super) {
      * List objects versions of Product type. <br />
      * List all versions of a Product object
      */
-    ProductAPI.prototype.listProductVersionRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.listVersionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling listProductVersion().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling listVersion().');
                         }
                         queryParameters = {};
                         if (requestParameters['page'] != null) {
@@ -630,12 +630,12 @@ var ProductAPI = /** @class */ (function (_super) {
      * List objects versions of Product type. <br />
      * List all versions of a Product object
      */
-    ProductAPI.prototype.listProductVersion = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.listVersion = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.listProductVersionRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.listVersionRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -648,14 +648,14 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows update of the Product object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Product object
      */
-    ProductAPI.prototype.patchProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.patchRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling patchProduct().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling patch().');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -685,12 +685,12 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows update of the Product object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Product object
      */
-    ProductAPI.prototype.patchProduct = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.patch = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.patchProductRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.patchRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -703,14 +703,14 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows update of the Product object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Product object
      */
-    ProductAPI.prototype.updateProductRaw = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.updateRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling updateProduct().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling update().');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -740,12 +740,12 @@ var ProductAPI = /** @class */ (function (_super) {
      * Allows update of the Product object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Product object
      */
-    ProductAPI.prototype.updateProduct = function (requestParameters, initOverrides) {
+    ProductAPI.prototype.update = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateProductRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

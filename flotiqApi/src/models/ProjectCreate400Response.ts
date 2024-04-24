@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,34 +11,76 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BatchDeleteMedia200ResponseToJSON = exports.BatchDeleteMedia200ResponseFromJSONTyped = exports.BatchDeleteMedia200ResponseFromJSON = exports.instanceOfBatchDeleteMedia200Response = void 0;
+
+import { mapValues } from '../runtime';
+
+//import { DataSource } from './DataSource';
+
 /**
- * Check if a given object implements the BatchDeleteMedia200Response interface.
+ * 
+ * @export
+ * @interface ProjectCreate400Response
  */
-function instanceOfBatchDeleteMedia200Response(value) {
+
+
+export interface ProjectCreate400Response {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProjectCreate400Response
+     */
+
+    name?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProjectCreate400Response
+     */
+
+    slug?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProjectCreate400Response
+     */
+
+    id?: Array<string> ;
+}
+
+
+
+/**
+ * Check if a given object implements the ProjectCreate400Response interface.
+ */
+export function instanceOfProjectCreate400Response(value: object): boolean {
     return true;
 }
-exports.instanceOfBatchDeleteMedia200Response = instanceOfBatchDeleteMedia200Response;
-function BatchDeleteMedia200ResponseFromJSON(json) {
-    return BatchDeleteMedia200ResponseFromJSONTyped(json, false);
+
+export function ProjectCreate400ResponseFromJSON(json: any): ProjectCreate400Response {
+    return ProjectCreate400ResponseFromJSONTyped(json, false);
 }
-exports.BatchDeleteMedia200ResponseFromJSON = BatchDeleteMedia200ResponseFromJSON;
-function BatchDeleteMedia200ResponseFromJSONTyped(json, ignoreDiscriminator) {
+
+export function ProjectCreate400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectCreate400Response  {
     if (json == null) {
         return json;
     }
-    return {
-        'deletedCount': json['deletedCount'] == null ? undefined : json['deletedCount'],
+        return {
+        
+        'name': json['name'] == null ? undefined : json['name'],
+        'slug': json['slug'] == null ? undefined : json['slug'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
-exports.BatchDeleteMedia200ResponseFromJSONTyped = BatchDeleteMedia200ResponseFromJSONTyped;
-function BatchDeleteMedia200ResponseToJSON(value) {
+
+export function ProjectCreate400ResponseToJSON(value?: ProjectCreate400Response | null): any {
     if (value == null) {
         return value;
     }
     return {
-        'deletedCount': value['deletedCount'],
+        
+        'name': value['name'],
+        'slug': value['slug'],
+        'id': value['id'],
     };
 }
-exports.BatchDeleteMedia200ResponseToJSON = BatchDeleteMedia200ResponseToJSON;
+

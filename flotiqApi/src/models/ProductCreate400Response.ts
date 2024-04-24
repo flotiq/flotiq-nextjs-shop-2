@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,34 +11,85 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListMedia400ResponseToJSON = exports.ListMedia400ResponseFromJSONTyped = exports.ListMedia400ResponseFromJSON = exports.instanceOfListMedia400Response = void 0;
+
+import { mapValues } from '../runtime';
+
+//import { DataSource } from './DataSource';
+
 /**
- * Check if a given object implements the ListMedia400Response interface.
+ * 
+ * @export
+ * @interface ProductCreate400Response
  */
-function instanceOfListMedia400Response(value) {
+
+
+export interface ProductCreate400Response {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProductCreate400Response
+     */
+
+    name?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProductCreate400Response
+     */
+
+    slug?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProductCreate400Response
+     */
+
+    price?: Array<string> ;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProductCreate400Response
+     */
+
+    id?: Array<string> ;
+}
+
+
+
+/**
+ * Check if a given object implements the ProductCreate400Response interface.
+ */
+export function instanceOfProductCreate400Response(value: object): boolean {
     return true;
 }
-exports.instanceOfListMedia400Response = instanceOfListMedia400Response;
-function ListMedia400ResponseFromJSON(json) {
-    return ListMedia400ResponseFromJSONTyped(json, false);
+
+export function ProductCreate400ResponseFromJSON(json: any): ProductCreate400Response {
+    return ProductCreate400ResponseFromJSONTyped(json, false);
 }
-exports.ListMedia400ResponseFromJSON = ListMedia400ResponseFromJSON;
-function ListMedia400ResponseFromJSONTyped(json, ignoreDiscriminator) {
+
+export function ProductCreate400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProductCreate400Response  {
     if (json == null) {
         return json;
     }
-    return {
-        'filters': json['filters'] == null ? undefined : json['filters'],
+        return {
+        
+        'name': json['name'] == null ? undefined : json['name'],
+        'slug': json['slug'] == null ? undefined : json['slug'],
+        'price': json['price'] == null ? undefined : json['price'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
-exports.ListMedia400ResponseFromJSONTyped = ListMedia400ResponseFromJSONTyped;
-function ListMedia400ResponseToJSON(value) {
+
+export function ProductCreate400ResponseToJSON(value?: ProductCreate400Response | null): any {
     if (value == null) {
         return value;
     }
     return {
-        'filters': value['filters'],
+        
+        'name': value['name'],
+        'slug': value['slug'],
+        'price': value['price'],
+        'id': value['id'],
     };
 }
-exports.ListMedia400ResponseToJSON = ListMedia400ResponseToJSON;
+

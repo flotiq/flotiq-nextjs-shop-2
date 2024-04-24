@@ -10,8 +10,35 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { BatchDeleteMedia200Response, BatchResponseSuccess, Tag, TagList, TagVersionsList, TagWithoutInternal, TagWithoutRequired } from '../models/index';
-export interface TagInternalAPITagRequest {
+import type { BatchResponseSuccess, MediaBatchDelete200Response, Tag, TagList, TagVersionsList, TagWithoutInternal, TagWithoutRequired } from '../models/index';
+export interface TagInternalAPIDeleteRequest {
+    id: string;
+}
+export interface TagInternalAPIBatchCreateRequest {
+    updateExisting?: boolean;
+    TagWithoutInternal?: Array<TagWithoutInternal>;
+}
+export interface TagInternalAPIBatchDeleteRequest {
+    request_body?: Array<string>;
+}
+export interface TagInternalAPIBatchPatchRequest {
+    TagWithoutInternal?: Array<TagWithoutInternal>;
+}
+export interface TagInternalAPICreateRequest {
+    TagWithoutInternal?: TagWithoutInternal;
+}
+export interface TagInternalAPIGetRequest {
+    id: string;
+    hydrate?: number;
+}
+export interface TagInternalAPIGetRemovedRequest {
+    deletedAfter?: string;
+}
+export interface TagInternalAPIGetVersionsRequest {
+    id: string;
+    versionId: string;
+}
+export interface TagInternalAPIListRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -20,170 +47,143 @@ export interface TagInternalAPITagRequest {
     filters?: string;
     ids?: Array<string>;
 }
-export interface TagInternalAPITagVersionRequest {
+export interface TagInternalAPIListVersionRequest {
     id: string;
     page?: number;
     limit?: number;
     order_by?: string;
     order_direction?: string;
 }
-export interface TagInternalAPITagVersionsRequest {
-    id: string;
-    versionId: string;
-}
-export interface TagInternalAPITag0Request {
-    TagWithoutInternal?: TagWithoutInternal;
-}
-export interface TagInternalAPITag1Request {
-    id: string;
-    hydrate?: number;
-}
-export interface TagInternalAPITag2Request {
-    id: string;
-    TagWithoutInternal?: TagWithoutInternal;
-}
-export interface TagInternalAPITag3Request {
-    id: string;
-}
-export interface TagInternalAPITag4Request {
+export interface TagInternalAPIPatchRequest {
     id: string;
     TagWithoutRequired?: TagWithoutRequired;
 }
-export interface TagInternalAPITag5Request {
-    updateExisting?: boolean;
-    TagWithoutInternal?: Array<TagWithoutInternal>;
-}
-export interface TagInternalAPITag6Request {
-    TagWithoutInternal?: Array<TagWithoutInternal>;
-}
-export interface TagInternalAPITag7Request {
-    request_body?: Array<string>;
-}
-export interface TagInternalAPITag8Request {
-    deletedAfter?: string;
+export interface TagInternalAPIUpdateRequest {
+    id: string;
+    TagWithoutInternal?: TagWithoutInternal;
 }
 /**
  *
  */
 export declare class TagInternalAPI extends runtime.BaseAPI {
     /**
-     * List objects of Tag (internal) type. <br />
-     * List _tag objects
+     * Removes Tag (internal) object.<br />
+     * Delete a _tag object
      */
-    tagRaw(requestParameters: TagInternalAPITagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagList>>;
-    /**
-     * List objects of Tag (internal) type. <br />
-     * List _tag objects
-     */
-    tag(requestParameters?: TagInternalAPITagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagList>;
-    /**
-     * List objects versions of Tag (internal) type. <br />
-     * List all versions of a _tag object
-     */
-    tagVersionRaw(requestParameters: TagInternalAPITagVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagVersionsList>>;
-    /**
-     * List objects versions of Tag (internal) type. <br />
-     * List all versions of a _tag object
-     */
-    tagVersion(requestParameters: TagInternalAPITagVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagVersionsList>;
-    /**
-     * Return version of Tag (internal) object. <br />
-     * Get a specific version of _tag object
-     */
-    tagVersionsRaw(requestParameters: TagInternalAPITagVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
-    /**
-     * Return version of Tag (internal) object. <br />
-     * Get a specific version of _tag object
-     */
-    tagVersions(requestParameters: TagInternalAPITagVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
-    /**
-     * Allows you to create object of Tag (internal) type. <br />
-     * Create a _tag object
-     */
-    tag_1Raw(requestParameters: TagInternalAPITag0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
-    /**
-     * Allows you to create object of Tag (internal) type. <br />
-     * Create a _tag object
-     */
-    tag_1(requestParameters?: TagInternalAPITag0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
-    /**
-     * Returns all information about Tag (internal) object. <br />
-     * Get _tag object by Id
-     */
-    tag_2Raw(requestParameters: TagInternalAPITag1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
-    /**
-     * Returns all information about Tag (internal) object. <br />
-     * Get _tag object by Id
-     */
-    tag_2(requestParameters: TagInternalAPITag1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
-    /**
-     * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
-     * Update existing _tag object
-     */
-    tag_3Raw(requestParameters: TagInternalAPITag2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
-    /**
-     * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
-     * Update existing _tag object
-     */
-    tag_3(requestParameters: TagInternalAPITag2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
+    _deleteRaw(requestParameters: TagInternalAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      * Removes Tag (internal) object.<br />
      * Delete a _tag object
      */
-    tag_4Raw(requestParameters: TagInternalAPITag3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Removes Tag (internal) object.<br />
-     * Delete a _tag object
-     */
-    tag_4(requestParameters: TagInternalAPITag3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Allows update of the Tag (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
-     * Update selected fields of _tag object
-     */
-    tag_5Raw(requestParameters: TagInternalAPITag4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
-    /**
-     * Allows update of the Tag (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
-     * Update selected fields of _tag object
-     */
-    tag_5(requestParameters: TagInternalAPITag4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
+    _delete(requestParameters: TagInternalAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
      * Create a batch of _tag objects
      */
-    tag_6Raw(requestParameters: TagInternalAPITag5Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
+    batchCreateRaw(requestParameters: TagInternalAPIBatchCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
     /**
      * Allows you to create or create and update up to 100 objects of Tag (internal) type. <br />
      * Create a batch of _tag objects
      */
-    tag_6(requestParameters?: TagInternalAPITag5Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
-    /**
-     * Allows you to update up to 100 objects of Tag (internal) type. <br />
-     * Update selected fields of a batch of objects
-     */
-    tag_7Raw(requestParameters: TagInternalAPITag6Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
-    /**
-     * Allows you to update up to 100 objects of Tag (internal) type. <br />
-     * Update selected fields of a batch of objects
-     */
-    tag_7(requestParameters?: TagInternalAPITag6Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
+    batchCreate(requestParameters?: TagInternalAPIBatchCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
     /**
      * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of _tag objects
      */
-    tag_8Raw(requestParameters: TagInternalAPITag7Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>>;
+    batchDeleteRaw(requestParameters: TagInternalAPIBatchDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaBatchDelete200Response>>;
     /**
      * Allows you to delete up to 100 objects of Tag (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
      * Delete a batch of _tag objects
      */
-    tag_8(requestParameters?: TagInternalAPITag7Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response>;
+    batchDelete(requestParameters?: TagInternalAPIBatchDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaBatchDelete200Response>;
+    /**
+     * Allows you to update up to 100 objects of Tag (internal) type. <br />
+     * Update selected fields of a batch of objects
+     */
+    batchPatchRaw(requestParameters: TagInternalAPIBatchPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
+    /**
+     * Allows you to update up to 100 objects of Tag (internal) type. <br />
+     * Update selected fields of a batch of objects
+     */
+    batchPatch(requestParameters?: TagInternalAPIBatchPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
+    /**
+     * Allows you to create object of Tag (internal) type. <br />
+     * Create a _tag object
+     */
+    createRaw(requestParameters: TagInternalAPICreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
+    /**
+     * Allows you to create object of Tag (internal) type. <br />
+     * Create a _tag object
+     */
+    create(requestParameters?: TagInternalAPICreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
+    /**
+     * Returns all information about Tag (internal) object. <br />
+     * Get _tag object by Id
+     */
+    getRaw(requestParameters: TagInternalAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
+    /**
+     * Returns all information about Tag (internal) object. <br />
+     * Get _tag object by Id
+     */
+    get(requestParameters: TagInternalAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
     /**
      * Get ids of removed Tag (internal) objects. <br />
      * Get removed object identifiers
      */
-    tag_9Raw(requestParameters: TagInternalAPITag8Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getRemovedRaw(requestParameters: TagInternalAPIGetRemovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
     /**
      * Get ids of removed Tag (internal) objects. <br />
      * Get removed object identifiers
      */
-    tag_9(requestParameters?: TagInternalAPITag8Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getRemoved(requestParameters?: TagInternalAPIGetRemovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    /**
+     * Return version of Tag (internal) object. <br />
+     * Get a specific version of _tag object
+     */
+    getVersionsRaw(requestParameters: TagInternalAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
+    /**
+     * Return version of Tag (internal) object. <br />
+     * Get a specific version of _tag object
+     */
+    getVersions(requestParameters: TagInternalAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
+    /**
+     * List objects of Tag (internal) type. <br />
+     * List _tag objects
+     */
+    listRaw(requestParameters: TagInternalAPIListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagList>>;
+    /**
+     * List objects of Tag (internal) type. <br />
+     * List _tag objects
+     */
+    list(requestParameters?: TagInternalAPIListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagList>;
+    /**
+     * List objects versions of Tag (internal) type. <br />
+     * List all versions of a _tag object
+     */
+    listVersionRaw(requestParameters: TagInternalAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TagVersionsList>>;
+    /**
+     * List objects versions of Tag (internal) type. <br />
+     * List all versions of a _tag object
+     */
+    listVersion(requestParameters: TagInternalAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TagVersionsList>;
+    /**
+     * Allows update of the Tag (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
+     * Update selected fields of _tag object
+     */
+    patchRaw(requestParameters: TagInternalAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
+    /**
+     * Allows update of the Tag (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
+     * Update selected fields of _tag object
+     */
+    patch(requestParameters: TagInternalAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
+    /**
+     * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
+     * Update existing _tag object
+     */
+    updateRaw(requestParameters: TagInternalAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Tag>>;
+    /**
+     * Allows update of the Tag (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
+     * Update existing _tag object
+     */
+    update(requestParameters: TagInternalAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Tag>;
 }

@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,34 +11,58 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteMedia400ResponseToJSON = exports.DeleteMedia400ResponseFromJSONTyped = exports.DeleteMedia400ResponseFromJSON = exports.instanceOfDeleteMedia400Response = void 0;
+
+import { mapValues } from '../runtime';
+
+//import { DataSource } from './DataSource';
+
 /**
- * Check if a given object implements the DeleteMedia400Response interface.
+ * 
+ * @export
+ * @interface MediaGetRemoved400Response
  */
-function instanceOfDeleteMedia400Response(value) {
+
+
+export interface MediaGetRemoved400Response {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MediaGetRemoved400Response
+     */
+
+    deletedAfter?: Array<string> ;
+}
+
+
+
+/**
+ * Check if a given object implements the MediaGetRemoved400Response interface.
+ */
+export function instanceOfMediaGetRemoved400Response(value: object): boolean {
     return true;
 }
-exports.instanceOfDeleteMedia400Response = instanceOfDeleteMedia400Response;
-function DeleteMedia400ResponseFromJSON(json) {
-    return DeleteMedia400ResponseFromJSONTyped(json, false);
+
+export function MediaGetRemoved400ResponseFromJSON(json: any): MediaGetRemoved400Response {
+    return MediaGetRemoved400ResponseFromJSONTyped(json, false);
 }
-exports.DeleteMedia400ResponseFromJSON = DeleteMedia400ResponseFromJSON;
-function DeleteMedia400ResponseFromJSONTyped(json, ignoreDiscriminator) {
+
+export function MediaGetRemoved400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MediaGetRemoved400Response  {
     if (json == null) {
         return json;
     }
-    return {
-        'errors': json['errors'] == null ? undefined : json['errors'],
+        return {
+        
+        'deletedAfter': json['deletedAfter'] == null ? undefined : json['deletedAfter'],
     };
 }
-exports.DeleteMedia400ResponseFromJSONTyped = DeleteMedia400ResponseFromJSONTyped;
-function DeleteMedia400ResponseToJSON(value) {
+
+export function MediaGetRemoved400ResponseToJSON(value?: MediaGetRemoved400Response | null): any {
     if (value == null) {
         return value;
     }
     return {
-        'errors': value['errors'],
+        
+        'deletedAfter': value['deletedAfter'],
     };
 }
-exports.DeleteMedia400ResponseToJSON = DeleteMedia400ResponseToJSON;
+

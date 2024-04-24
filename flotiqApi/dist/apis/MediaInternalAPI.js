@@ -76,10 +76,442 @@ var MediaInternalAPI = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Removes Media (internal) object.<br />
+     * Delete a _media object
+     */
+    MediaInternalAPI.prototype._deleteRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (requestParameters['id'] == null) {
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling _delete().');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/_media/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
+                            method: 'DELETE',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.VoidApiResponse(response)];
+                }
+            });
+        });
+    };
+    /**
+     * Removes Media (internal) object.<br />
+     * Delete a _media object
+     */
+    MediaInternalAPI.prototype._delete = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this._deleteRaw(requestParameters, initOverrides)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
+     * Create a batch of _media objects
+     */
+    MediaInternalAPI.prototype.batchCreateRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        queryParameters = {};
+                        if (requestParameters['updateExisting'] != null) {
+                            queryParameters['updateExisting'] = requestParameters['updateExisting'];
+                        }
+                        headerParameters = {};
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/_media/batch",
+                            method: 'POST',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: requestParameters['MediaWithoutInternal'].map(index_1.MediaWithoutInternalToJSON),
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.BatchResponseSuccessFromJSON)(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
+     * Create a batch of _media objects
+     */
+    MediaInternalAPI.prototype.batchCreate = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.batchCreateRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of _media objects
+     */
+    MediaInternalAPI.prototype.batchDeleteRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/_media/batch-delete",
+                            method: 'POST',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: requestParameters['request_body'],
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaBatchDelete200ResponseFromJSON)(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of _media objects
+     */
+    MediaInternalAPI.prototype.batchDelete = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.batchDeleteRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Allows you to update up to 100 objects of Media (internal) type. <br />
+     * Update selected fields of a batch of objects
+     */
+    MediaInternalAPI.prototype.batchPatchRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/_media/batch",
+                            method: 'PATCH',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: requestParameters['MediaWithoutInternal'].map(index_1.MediaWithoutInternalToJSON),
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.BatchResponseSuccessFromJSON)(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Allows you to update up to 100 objects of Media (internal) type. <br />
+     * Update selected fields of a batch of objects
+     */
+    MediaInternalAPI.prototype.batchPatch = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.batchPatchRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Allows you to create object of Media (internal) type. <br />
+     * Create a _media object
+     */
+    MediaInternalAPI.prototype.createRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        queryParameters = {};
+                        headerParameters = {};
+                        headerParameters['Content-Type'] = 'application/json';
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/_media",
+                            method: 'POST',
+                            headers: headerParameters,
+                            query: queryParameters,
+                            body: (0, index_1.MediaWithoutInternalToJSON)(requestParameters['MediaWithoutInternal']),
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaFromJSON)(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Allows you to create object of Media (internal) type. <br />
+     * Create a _media object
+     */
+    MediaInternalAPI.prototype.create = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.createRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Returns all information about Media (internal) object. <br />
+     * Get _media object by Id
+     */
+    MediaInternalAPI.prototype.getRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (requestParameters['id'] == null) {
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling get().');
+                        }
+                        queryParameters = {};
+                        if (requestParameters['hydrate'] != null) {
+                            queryParameters['hydrate'] = requestParameters['hydrate'];
+                        }
+                        headerParameters = {};
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/_media/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
+                            method: 'GET',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaFromJSON)(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Returns all information about Media (internal) object. <br />
+     * Get _media object by Id
+     */
+    MediaInternalAPI.prototype.get = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Get ids of removed Media (internal) objects. <br />
+     * Get removed object identifiers
+     */
+    MediaInternalAPI.prototype.getRemovedRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        queryParameters = {};
+                        if (requestParameters['deletedAfter'] != null) {
+                            queryParameters['deletedAfter'] = requestParameters['deletedAfter'];
+                        }
+                        headerParameters = {};
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/_media/removed",
+                            method: 'GET',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response)];
+                }
+            });
+        });
+    };
+    /**
+     * Get ids of removed Media (internal) objects. <br />
+     * Get removed object identifiers
+     */
+    MediaInternalAPI.prototype.getRemoved = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getRemovedRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * Return version of Media (internal) object. <br />
+     * Get a specific version of _media object
+     */
+    MediaInternalAPI.prototype.getVersionsRaw = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryParameters, headerParameters, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (requestParameters['id'] == null) {
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getVersions().');
+                        }
+                        if (requestParameters['versionId'] == null) {
+                            throw new runtime.RequiredError('versionId', 'Required parameter "versionId" was null or undefined when calling getVersions().');
+                        }
+                        queryParameters = {};
+                        headerParameters = {};
+                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
+                        _a = headerParameters;
+                        _b = "X-AUTH-TOKEN";
+                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
+                    case 1:
+                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
+                        _c.label = 2;
+                    case 2: return [4 /*yield*/, this.request({
+                            path: "/api/v1/content/_media/{id}/version/{versionId}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))).replace("{".concat("versionId", "}"), encodeURIComponent(String(requestParameters['versionId']))),
+                            method: 'GET',
+                            headers: headerParameters,
+                            query: queryParameters,
+                        }, initOverrides)];
+                    case 3:
+                        response = _c.sent();
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaFromJSON)(jsonValue); })];
+                }
+            });
+        });
+    };
+    /**
+     * Return version of Media (internal) object. <br />
+     * Get a specific version of _media object
+     */
+    MediaInternalAPI.prototype.getVersions = function (requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getVersionsRaw(requestParameters, initOverrides)];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.value()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
      * List objects of Media (internal) type. <br />
      * List _media objects
      */
-    MediaInternalAPI.prototype.mediaRaw = function (requestParameters, initOverrides) {
+    MediaInternalAPI.prototype.listRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
@@ -132,13 +564,13 @@ var MediaInternalAPI = /** @class */ (function (_super) {
      * List objects of Media (internal) type. <br />
      * List _media objects
      */
-    MediaInternalAPI.prototype.media = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
+    MediaInternalAPI.prototype.list = function (requestParameters, initOverrides) {
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return __awaiter(this, void 0, void 0, function () {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.mediaRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.listRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -151,14 +583,14 @@ var MediaInternalAPI = /** @class */ (function (_super) {
      * List objects versions of Media (internal) type. <br />
      * List all versions of a _media object
      */
-    MediaInternalAPI.prototype.mediaVersionRaw = function (requestParameters, initOverrides) {
+    MediaInternalAPI.prototype.listVersionRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling mediaVersion().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling listVersion().');
                         }
                         queryParameters = {};
                         if (requestParameters['page'] != null) {
@@ -198,287 +630,16 @@ var MediaInternalAPI = /** @class */ (function (_super) {
      * List objects versions of Media (internal) type. <br />
      * List all versions of a _media object
      */
-    MediaInternalAPI.prototype.mediaVersion = function (requestParameters, initOverrides) {
+    MediaInternalAPI.prototype.listVersion = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.mediaVersionRaw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.listVersionRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
                     case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Return version of Media (internal) object. <br />
-     * Get a specific version of _media object
-     */
-    MediaInternalAPI.prototype.mediaVersionsRaw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling mediaVersions().');
-                        }
-                        if (requestParameters['versionId'] == null) {
-                            throw new runtime.RequiredError('versionId', 'Required parameter "versionId" was null or undefined when calling mediaVersions().');
-                        }
-                        queryParameters = {};
-                        headerParameters = {};
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media/{id}/version/{versionId}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))).replace("{".concat("versionId", "}"), encodeURIComponent(String(requestParameters['versionId']))),
-                            method: 'GET',
-                            headers: headerParameters,
-                            query: queryParameters,
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaFromJSON)(jsonValue); })];
-                }
-            });
-        });
-    };
-    /**
-     * Return version of Media (internal) object. <br />
-     * Get a specific version of _media object
-     */
-    MediaInternalAPI.prototype.mediaVersions = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.mediaVersionsRaw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Allows you to create object of Media (internal) type. <br />
-     * Create a _media object
-     */
-    MediaInternalAPI.prototype.media_1Raw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        queryParameters = {};
-                        headerParameters = {};
-                        headerParameters['Content-Type'] = 'application/json';
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media",
-                            method: 'POST',
-                            headers: headerParameters,
-                            query: queryParameters,
-                            body: (0, index_1.MediaWithoutInternalToJSON)(requestParameters['MediaWithoutInternal']),
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaFromJSON)(jsonValue); })];
-                }
-            });
-        });
-    };
-    /**
-     * Allows you to create object of Media (internal) type. <br />
-     * Create a _media object
-     */
-    MediaInternalAPI.prototype.media_1 = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
-            var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_1Raw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Returns all information about Media (internal) object. <br />
-     * Get _media object by Id
-     */
-    MediaInternalAPI.prototype.media_2Raw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling media_2().');
-                        }
-                        queryParameters = {};
-                        if (requestParameters['hydrate'] != null) {
-                            queryParameters['hydrate'] = requestParameters['hydrate'];
-                        }
-                        headerParameters = {};
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
-                            method: 'GET',
-                            headers: headerParameters,
-                            query: queryParameters,
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaFromJSON)(jsonValue); })];
-                }
-            });
-        });
-    };
-    /**
-     * Returns all information about Media (internal) object. <br />
-     * Get _media object by Id
-     */
-    MediaInternalAPI.prototype.media_2 = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_2Raw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
-     * Update existing _media object
-     */
-    MediaInternalAPI.prototype.media_3Raw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling media_3().');
-                        }
-                        queryParameters = {};
-                        headerParameters = {};
-                        headerParameters['Content-Type'] = 'application/json';
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
-                            method: 'PUT',
-                            headers: headerParameters,
-                            query: queryParameters,
-                            body: (0, index_1.MediaWithoutInternalToJSON)(requestParameters['MediaWithoutInternal']),
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaFromJSON)(jsonValue); })];
-                }
-            });
-        });
-    };
-    /**
-     * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
-     * Update existing _media object
-     */
-    MediaInternalAPI.prototype.media_3 = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_3Raw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Removes Media (internal) object.<br />
-     * Delete a _media object
-     */
-    MediaInternalAPI.prototype.media_4Raw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling media_4().');
-                        }
-                        queryParameters = {};
-                        headerParameters = {};
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
-                            method: 'DELETE',
-                            headers: headerParameters,
-                            query: queryParameters,
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.VoidApiResponse(response)];
-                }
-            });
-        });
-    };
-    /**
-     * Removes Media (internal) object.<br />
-     * Delete a _media object
-     */
-    MediaInternalAPI.prototype.media_4 = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_4Raw(requestParameters, initOverrides)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
                 }
             });
         });
@@ -487,14 +648,14 @@ var MediaInternalAPI = /** @class */ (function (_super) {
      * Allows update of the Media (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _media object
      */
-    MediaInternalAPI.prototype.media_5Raw = function (requestParameters, initOverrides) {
+    MediaInternalAPI.prototype.patchRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (requestParameters['id'] == null) {
-                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling media_5().');
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling patch().');
                         }
                         queryParameters = {};
                         headerParameters = {};
@@ -524,12 +685,12 @@ var MediaInternalAPI = /** @class */ (function (_super) {
      * Allows update of the Media (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _media object
      */
-    MediaInternalAPI.prototype.media_5 = function (requestParameters, initOverrides) {
+    MediaInternalAPI.prototype.patch = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_5Raw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.patchRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];
@@ -539,71 +700,18 @@ var MediaInternalAPI = /** @class */ (function (_super) {
         });
     };
     /**
-     * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
-     * Create a batch of _media objects
+     * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
+     * Update existing _media object
      */
-    MediaInternalAPI.prototype.media_6Raw = function (requestParameters, initOverrides) {
+    MediaInternalAPI.prototype.updateRaw = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
             var queryParameters, headerParameters, _a, _b, response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
-                        queryParameters = {};
-                        if (requestParameters['updateExisting'] != null) {
-                            queryParameters['updateExisting'] = requestParameters['updateExisting'];
+                        if (requestParameters['id'] == null) {
+                            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling update().');
                         }
-                        headerParameters = {};
-                        headerParameters['Content-Type'] = 'application/json';
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media/batch",
-                            method: 'POST',
-                            headers: headerParameters,
-                            query: queryParameters,
-                            body: requestParameters['MediaWithoutInternal'].map(index_1.MediaWithoutInternalToJSON),
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.BatchResponseSuccessFromJSON)(jsonValue); })];
-                }
-            });
-        });
-    };
-    /**
-     * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
-     * Create a batch of _media objects
-     */
-    MediaInternalAPI.prototype.media_6 = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
-            var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_6Raw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Allows you to update up to 100 objects of Media (internal) type. <br />
-     * Update selected fields of a batch of objects
-     */
-    MediaInternalAPI.prototype.media_7Raw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
                         queryParameters = {};
                         headerParameters = {};
                         headerParameters['Content-Type'] = 'application/json';
@@ -615,137 +723,29 @@ var MediaInternalAPI = /** @class */ (function (_super) {
                         _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
                         _c.label = 2;
                     case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media/batch",
-                            method: 'PATCH',
+                            path: "/api/v1/content/_media/{id}".replace("{".concat("id", "}"), encodeURIComponent(String(requestParameters['id']))),
+                            method: 'PUT',
                             headers: headerParameters,
                             query: queryParameters,
-                            body: requestParameters['MediaWithoutInternal'].map(index_1.MediaWithoutInternalToJSON),
+                            body: (0, index_1.MediaWithoutInternalToJSON)(requestParameters['MediaWithoutInternal']),
                         }, initOverrides)];
                     case 3:
                         response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.BatchResponseSuccessFromJSON)(jsonValue); })];
+                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.MediaFromJSON)(jsonValue); })];
                 }
             });
         });
     };
     /**
-     * Allows you to update up to 100 objects of Media (internal) type. <br />
-     * Update selected fields of a batch of objects
+     * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
+     * Update existing _media object
      */
-    MediaInternalAPI.prototype.media_7 = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
-            var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_7Raw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of _media objects
-     */
-    MediaInternalAPI.prototype.media_8Raw = function (requestParameters, initOverrides) {
+    MediaInternalAPI.prototype.update = function (requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        queryParameters = {};
-                        headerParameters = {};
-                        headerParameters['Content-Type'] = 'application/json';
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media/batch-delete",
-                            method: 'POST',
-                            headers: headerParameters,
-                            query: queryParameters,
-                            body: requestParameters['request_body'],
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response, function (jsonValue) { return (0, index_1.BatchDeleteMedia200ResponseFromJSON)(jsonValue); })];
-                }
-            });
-        });
-    };
-    /**
-     * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of _media objects
-     */
-    MediaInternalAPI.prototype.media_8 = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
             var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_8Raw(requestParameters, initOverrides)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.value()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * Get ids of removed Media (internal) objects. <br />
-     * Get removed object identifiers
-     */
-    MediaInternalAPI.prototype.media_9Raw = function (requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function () {
-            var queryParameters, headerParameters, _a, _b, response;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        queryParameters = {};
-                        if (requestParameters['deletedAfter'] != null) {
-                            queryParameters['deletedAfter'] = requestParameters['deletedAfter'];
-                        }
-                        headerParameters = {};
-                        if (!(this.configuration && this.configuration.apiKey)) return [3 /*break*/, 2];
-                        _a = headerParameters;
-                        _b = "X-AUTH-TOKEN";
-                        return [4 /*yield*/, this.configuration.apiKey("X-AUTH-TOKEN")];
-                    case 1:
-                        _a[_b] = _c.sent(); // HeaderApiKeyAuth authentication
-                        _c.label = 2;
-                    case 2: return [4 /*yield*/, this.request({
-                            path: "/api/v1/content/_media/removed",
-                            method: 'GET',
-                            headers: headerParameters,
-                            query: queryParameters,
-                        }, initOverrides)];
-                    case 3:
-                        response = _c.sent();
-                        return [2 /*return*/, new runtime.JSONApiResponse(response)];
-                }
-            });
-        });
-    };
-    /**
-     * Get ids of removed Media (internal) objects. <br />
-     * Get removed object identifiers
-     */
-    MediaInternalAPI.prototype.media_9 = function () {
-        return __awaiter(this, arguments, void 0, function (requestParameters, initOverrides) {
-            var response;
-            if (requestParameters === void 0) { requestParameters = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.media_9Raw(requestParameters, initOverrides)];
+                    case 0: return [4 /*yield*/, this.updateRaw(requestParameters, initOverrides)];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.value()];

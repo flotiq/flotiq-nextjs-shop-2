@@ -19,22 +19,22 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateTag400Response
+ * @interface TagCreate400Response
  */
 
 
-export interface CreateTag400Response {
+export interface TagCreate400Response {
     /**
      * 
      * @type {Array<string>}
-     * @memberof CreateTag400Response
+     * @memberof TagCreate400Response
      */
 
     name?: Array<string> ;
     /**
      * 
      * @type {Array<string>}
-     * @memberof CreateTag400Response
+     * @memberof TagCreate400Response
      */
 
     id?: Array<string> ;
@@ -43,17 +43,17 @@ export interface CreateTag400Response {
 
 
 /**
- * Check if a given object implements the CreateTag400Response interface.
+ * Check if a given object implements the TagCreate400Response interface.
  */
-export function instanceOfCreateTag400Response(value: object): boolean {
+export function instanceOfTagCreate400Response(value: object): boolean {
     return true;
 }
 
-export function CreateTag400ResponseFromJSON(json: any): CreateTag400Response {
-    return CreateTag400ResponseFromJSONTyped(json, false);
+export function TagCreate400ResponseFromJSON(json: any): TagCreate400Response {
+    return TagCreate400ResponseFromJSONTyped(json, false);
 }
 
-export function CreateTag400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTag400Response  {
+export function TagCreate400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): TagCreate400Response  {
     if (json == null) {
         return json;
     }
@@ -64,7 +64,7 @@ export function CreateTag400ResponseFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-export function CreateTag400ResponseToJSON(value?: CreateTag400Response | null): any {
+export function TagCreate400ResponseToJSON(value?: TagCreate400Response | null): any {
     if (value == null) {
         return value;
     }

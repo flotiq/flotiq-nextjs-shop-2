@@ -15,16 +15,16 @@
 
 import * as runtime from '../runtime';
 import type {
-  BatchDeleteMedia200Response,
-  BatchDeleteMedia400Response,
   BatchResponseError,
   BatchResponseSuccess,
-  CreateMedia400Response,
-  DeleteMedia400Response,
-  GetRemovedMedia400Response,
-  ListMedia400Response,
   Media,
+  MediaBatchDelete200Response,
+  MediaBatchDelete400Response,
+  MediaCreate400Response,
+  MediaDelete400Response,
+  MediaGetRemoved400Response,
   MediaList,
+  MediaList400Response,
   MediaVersionsList,
   MediaWithoutInternal,
   MediaWithoutRequired,
@@ -33,26 +33,26 @@ import type {
   Model404Response,
 } from '../models/index';
 import {
-    BatchDeleteMedia200ResponseFromJSON,
-    BatchDeleteMedia200ResponseToJSON,
-    BatchDeleteMedia400ResponseFromJSON,
-    BatchDeleteMedia400ResponseToJSON,
     BatchResponseErrorFromJSON,
     BatchResponseErrorToJSON,
     BatchResponseSuccessFromJSON,
     BatchResponseSuccessToJSON,
-    CreateMedia400ResponseFromJSON,
-    CreateMedia400ResponseToJSON,
-    DeleteMedia400ResponseFromJSON,
-    DeleteMedia400ResponseToJSON,
-    GetRemovedMedia400ResponseFromJSON,
-    GetRemovedMedia400ResponseToJSON,
-    ListMedia400ResponseFromJSON,
-    ListMedia400ResponseToJSON,
     MediaFromJSON,
     MediaToJSON,
+    MediaBatchDelete200ResponseFromJSON,
+    MediaBatchDelete200ResponseToJSON,
+    MediaBatchDelete400ResponseFromJSON,
+    MediaBatchDelete400ResponseToJSON,
+    MediaCreate400ResponseFromJSON,
+    MediaCreate400ResponseToJSON,
+    MediaDelete400ResponseFromJSON,
+    MediaDelete400ResponseToJSON,
+    MediaGetRemoved400ResponseFromJSON,
+    MediaGetRemoved400ResponseToJSON,
     MediaListFromJSON,
     MediaListToJSON,
+    MediaList400ResponseFromJSON,
+    MediaList400ResponseToJSON,
     MediaVersionsListFromJSON,
     MediaVersionsListToJSON,
     MediaWithoutInternalFromJSON,
@@ -67,7 +67,42 @@ import {
     Model404ResponseToJSON,
 } from '../models/index';
 
-export interface MediaInternalAPIMediaRequest {
+export interface MediaInternalAPIDeleteRequest {
+    id: string;
+}
+
+export interface MediaInternalAPIBatchCreateRequest {
+    updateExisting?: boolean;
+    MediaWithoutInternal?: Array<MediaWithoutInternal>;
+}
+
+export interface MediaInternalAPIBatchDeleteRequest {
+    request_body?: Array<string>;
+}
+
+export interface MediaInternalAPIBatchPatchRequest {
+    MediaWithoutInternal?: Array<MediaWithoutInternal>;
+}
+
+export interface MediaInternalAPICreateRequest {
+    MediaWithoutInternal?: MediaWithoutInternal;
+}
+
+export interface MediaInternalAPIGetRequest {
+    id: string;
+    hydrate?: number;
+}
+
+export interface MediaInternalAPIGetRemovedRequest {
+    deletedAfter?: string;
+}
+
+export interface MediaInternalAPIGetVersionsRequest {
+    id: string;
+    versionId: string;
+}
+
+export interface MediaInternalAPIListRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -77,7 +112,7 @@ export interface MediaInternalAPIMediaRequest {
     ids?: Array<string>;
 }
 
-export interface MediaInternalAPIMediaVersionRequest {
+export interface MediaInternalAPIListVersionRequest {
     id: string;
     page?: number;
     limit?: number;
@@ -85,49 +120,14 @@ export interface MediaInternalAPIMediaVersionRequest {
     order_direction?: string;
 }
 
-export interface MediaInternalAPIMediaVersionsRequest {
-    id: string;
-    versionId: string;
-}
-
-export interface MediaInternalAPIMedia0Request {
-    MediaWithoutInternal?: MediaWithoutInternal;
-}
-
-export interface MediaInternalAPIMedia1Request {
-    id: string;
-    hydrate?: number;
-}
-
-export interface MediaInternalAPIMedia2Request {
-    id: string;
-    MediaWithoutInternal?: MediaWithoutInternal;
-}
-
-export interface MediaInternalAPIMedia3Request {
-    id: string;
-}
-
-export interface MediaInternalAPIMedia4Request {
+export interface MediaInternalAPIPatchRequest {
     id: string;
     MediaWithoutRequired?: MediaWithoutRequired;
 }
 
-export interface MediaInternalAPIMedia5Request {
-    updateExisting?: boolean;
-    MediaWithoutInternal?: Array<MediaWithoutInternal>;
-}
-
-export interface MediaInternalAPIMedia6Request {
-    MediaWithoutInternal?: Array<MediaWithoutInternal>;
-}
-
-export interface MediaInternalAPIMedia7Request {
-    request_body?: Array<string>;
-}
-
-export interface MediaInternalAPIMedia8Request {
-    deletedAfter?: string;
+export interface MediaInternalAPIUpdateRequest {
+    id: string;
+    MediaWithoutInternal?: MediaWithoutInternal;
 }
 
 /**
@@ -136,10 +136,317 @@ export interface MediaInternalAPIMedia8Request {
 export class MediaInternalAPI extends runtime.BaseAPI {
 
     /**
+     * Removes Media (internal) object.<br />
+     * Delete a _media object
+     */
+    async _deleteRaw(requestParameters: MediaInternalAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling _delete().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_media/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Removes Media (internal) object.<br />
+     * Delete a _media object
+     */
+    async _delete(requestParameters: MediaInternalAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this._deleteRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
+     * Create a batch of _media objects
+     */
+    async batchCreateRaw(requestParameters: MediaInternalAPIBatchCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['updateExisting'] != null) {
+            queryParameters['updateExisting'] = requestParameters['updateExisting'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_media/batch`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['MediaWithoutInternal']!.map(MediaWithoutInternalToJSON),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BatchResponseSuccessFromJSON(jsonValue));
+    }
+
+    /**
+     * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
+     * Create a batch of _media objects
+     */
+    async batchCreate(requestParameters: MediaInternalAPIBatchCreateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+        const response = await this.batchCreateRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of _media objects
+     */
+    async batchDeleteRaw(requestParameters: MediaInternalAPIBatchDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaBatchDelete200Response>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_media/batch-delete`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['request_body'],
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MediaBatchDelete200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of _media objects
+     */
+    async batchDelete(requestParameters: MediaInternalAPIBatchDeleteRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaBatchDelete200Response> {
+        const response = await this.batchDeleteRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Allows you to update up to 100 objects of Media (internal) type. <br />
+     * Update selected fields of a batch of objects
+     */
+    async batchPatchRaw(requestParameters: MediaInternalAPIBatchPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_media/batch`,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['MediaWithoutInternal']!.map(MediaWithoutInternalToJSON),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BatchResponseSuccessFromJSON(jsonValue));
+    }
+
+    /**
+     * Allows you to update up to 100 objects of Media (internal) type. <br />
+     * Update selected fields of a batch of objects
+     */
+    async batchPatch(requestParameters: MediaInternalAPIBatchPatchRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
+        const response = await this.batchPatchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Allows you to create object of Media (internal) type. <br />
+     * Create a _media object
+     */
+    async createRaw(requestParameters: MediaInternalAPICreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_media`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: MediaWithoutInternalToJSON(requestParameters['MediaWithoutInternal']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MediaFromJSON(jsonValue));
+    }
+
+    /**
+     * Allows you to create object of Media (internal) type. <br />
+     * Create a _media object
+     */
+    async create(requestParameters: MediaInternalAPICreateRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+        const response = await this.createRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Returns all information about Media (internal) object. <br />
+     * Get _media object by Id
+     */
+    async getRaw(requestParameters: MediaInternalAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling get().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['hydrate'] != null) {
+            queryParameters['hydrate'] = requestParameters['hydrate'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_media/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MediaFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns all information about Media (internal) object. <br />
+     * Get _media object by Id
+     */
+    async get(requestParameters: MediaInternalAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+        const response = await this.getRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get ids of removed Media (internal) objects. <br />
+     * Get removed object identifiers
+     */
+    async getRemovedRaw(requestParameters: MediaInternalAPIGetRemovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['deletedAfter'] != null) {
+            queryParameters['deletedAfter'] = requestParameters['deletedAfter'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_media/removed`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Get ids of removed Media (internal) objects. <br />
+     * Get removed object identifiers
+     */
+    async getRemoved(requestParameters: MediaInternalAPIGetRemovedRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.getRemovedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Return version of Media (internal) object. <br />
+     * Get a specific version of _media object
+     */
+    async getVersionsRaw(requestParameters: MediaInternalAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getVersions().'
+            );
+        }
+
+        if (requestParameters['versionId'] == null) {
+            throw new runtime.RequiredError(
+                'versionId',
+                'Required parameter "versionId" was null or undefined when calling getVersions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api/v1/content/_media/{id}/version/{versionId}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))).replace(`{${"versionId"}}`, encodeURIComponent(String(requestParameters['versionId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MediaFromJSON(jsonValue));
+    }
+
+    /**
+     * Return version of Media (internal) object. <br />
+     * Get a specific version of _media object
+     */
+    async getVersions(requestParameters: MediaInternalAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+        const response = await this.getVersionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List objects of Media (internal) type. <br />
      * List _media objects
      */
-    async mediaRaw(requestParameters: MediaInternalAPIMediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaList>> {
+    async listRaw(requestParameters: MediaInternalAPIListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaList>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -190,8 +497,8 @@ export class MediaInternalAPI extends runtime.BaseAPI {
      * List objects of Media (internal) type. <br />
      * List _media objects
      */
-    async media(requestParameters: MediaInternalAPIMediaRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaList> {
-        const response = await this.mediaRaw(requestParameters, initOverrides);
+    async list(requestParameters: MediaInternalAPIListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaList> {
+        const response = await this.listRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -199,11 +506,11 @@ export class MediaInternalAPI extends runtime.BaseAPI {
      * List objects versions of Media (internal) type. <br />
      * List all versions of a _media object
      */
-    async mediaVersionRaw(requestParameters: MediaInternalAPIMediaVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaVersionsList>> {
+    async listVersionRaw(requestParameters: MediaInternalAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaVersionsList>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling mediaVersion().'
+                'Required parameter "id" was null or undefined when calling listVersion().'
             );
         }
 
@@ -245,224 +552,20 @@ export class MediaInternalAPI extends runtime.BaseAPI {
      * List objects versions of Media (internal) type. <br />
      * List all versions of a _media object
      */
-    async mediaVersion(requestParameters: MediaInternalAPIMediaVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaVersionsList> {
-        const response = await this.mediaVersionRaw(requestParameters, initOverrides);
+    async listVersion(requestParameters: MediaInternalAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaVersionsList> {
+        const response = await this.listVersionRaw(requestParameters, initOverrides);
         return await response.value();
-    }
-
-    /**
-     * Return version of Media (internal) object. <br />
-     * Get a specific version of _media object
-     */
-    async mediaVersionsRaw(requestParameters: MediaInternalAPIMediaVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling mediaVersions().'
-            );
-        }
-
-        if (requestParameters['versionId'] == null) {
-            throw new runtime.RequiredError(
-                'versionId',
-                'Required parameter "versionId" was null or undefined when calling mediaVersions().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_media/{id}/version/{versionId}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))).replace(`{${"versionId"}}`, encodeURIComponent(String(requestParameters['versionId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => MediaFromJSON(jsonValue));
-    }
-
-    /**
-     * Return version of Media (internal) object. <br />
-     * Get a specific version of _media object
-     */
-    async mediaVersions(requestParameters: MediaInternalAPIMediaVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
-        const response = await this.mediaVersionsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows you to create object of Media (internal) type. <br />
-     * Create a _media object
-     */
-    async media_1Raw(requestParameters: MediaInternalAPIMedia0Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_media`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: MediaWithoutInternalToJSON(requestParameters['MediaWithoutInternal']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => MediaFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows you to create object of Media (internal) type. <br />
-     * Create a _media object
-     */
-    async media_1(requestParameters: MediaInternalAPIMedia0Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
-        const response = await this.media_1Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Returns all information about Media (internal) object. <br />
-     * Get _media object by Id
-     */
-    async media_2Raw(requestParameters: MediaInternalAPIMedia1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling media_2().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['hydrate'] != null) {
-            queryParameters['hydrate'] = requestParameters['hydrate'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_media/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => MediaFromJSON(jsonValue));
-    }
-
-    /**
-     * Returns all information about Media (internal) object. <br />
-     * Get _media object by Id
-     */
-    async media_2(requestParameters: MediaInternalAPIMedia1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
-        const response = await this.media_2Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
-     * Update existing _media object
-     */
-    async media_3Raw(requestParameters: MediaInternalAPIMedia2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling media_3().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_media/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: MediaWithoutInternalToJSON(requestParameters['MediaWithoutInternal']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => MediaFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
-     * Update existing _media object
-     */
-    async media_3(requestParameters: MediaInternalAPIMedia2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
-        const response = await this.media_3Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Removes Media (internal) object.<br />
-     * Delete a _media object
-     */
-    async media_4Raw(requestParameters: MediaInternalAPIMedia3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling media_4().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_media/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Removes Media (internal) object.<br />
-     * Delete a _media object
-     */
-    async media_4(requestParameters: MediaInternalAPIMedia3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.media_4Raw(requestParameters, initOverrides);
     }
 
     /**
      * Allows update of the Media (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _media object
      */
-    async media_5Raw(requestParameters: MediaInternalAPIMedia4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+    async patchRaw(requestParameters: MediaInternalAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling media_5().'
+                'Required parameter "id" was null or undefined when calling patch().'
             );
         }
 
@@ -491,55 +594,23 @@ export class MediaInternalAPI extends runtime.BaseAPI {
      * Allows update of the Media (internal) object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of _media object
      */
-    async media_5(requestParameters: MediaInternalAPIMedia4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
-        const response = await this.media_5Raw(requestParameters, initOverrides);
+    async patch(requestParameters: MediaInternalAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+        const response = await this.patchRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
-     * Create a batch of _media objects
+     * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
+     * Update existing _media object
      */
-    async media_6Raw(requestParameters: MediaInternalAPIMedia5Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['updateExisting'] != null) {
-            queryParameters['updateExisting'] = requestParameters['updateExisting'];
+    async updateRaw(requestParameters: MediaInternalAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Media>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling update().'
+            );
         }
 
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_media/batch`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['MediaWithoutInternal']!.map(MediaWithoutInternalToJSON),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => BatchResponseSuccessFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows you to create or create and update up to 100 objects of Media (internal) type. <br />
-     * Create a batch of _media objects
-     */
-    async media_6(requestParameters: MediaInternalAPIMedia5Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
-        const response = await this.media_6Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows you to update up to 100 objects of Media (internal) type. <br />
-     * Update selected fields of a batch of objects
-     */
-    async media_7Raw(requestParameters: MediaInternalAPIMedia6Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -551,93 +622,22 @@ export class MediaInternalAPI extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/v1/content/_media/batch`,
-            method: 'PATCH',
+            path: `/api/v1/content/_media/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['MediaWithoutInternal']!.map(MediaWithoutInternalToJSON),
+            body: MediaWithoutInternalToJSON(requestParameters['MediaWithoutInternal']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => BatchResponseSuccessFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => MediaFromJSON(jsonValue));
     }
 
     /**
-     * Allows you to update up to 100 objects of Media (internal) type. <br />
-     * Update selected fields of a batch of objects
+     * Allows update of the Media (internal) object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
+     * Update existing _media object
      */
-    async media_7(requestParameters: MediaInternalAPIMedia6Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess> {
-        const response = await this.media_7Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of _media objects
-     */
-    async media_8Raw(requestParameters: MediaInternalAPIMedia7Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_media/batch-delete`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['request_body'],
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => BatchDeleteMedia200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Allows you to delete up to 100 objects of Media (internal) type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of _media objects
-     */
-    async media_8(requestParameters: MediaInternalAPIMedia7Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response> {
-        const response = await this.media_8Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get ids of removed Media (internal) objects. <br />
-     * Get removed object identifiers
-     */
-    async media_9Raw(requestParameters: MediaInternalAPIMedia8Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['deletedAfter'] != null) {
-            queryParameters['deletedAfter'] = requestParameters['deletedAfter'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-AUTH-TOKEN"] = await this.configuration.apiKey("X-AUTH-TOKEN"); // HeaderApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/api/v1/content/_media/removed`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse<any>(response);
-    }
-
-    /**
-     * Get ids of removed Media (internal) objects. <br />
-     * Get removed object identifiers
-     */
-    async media_9(requestParameters: MediaInternalAPIMedia8Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
-        const response = await this.media_9Raw(requestParameters, initOverrides);
+    async update(requestParameters: MediaInternalAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Media> {
+        const response = await this.updateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

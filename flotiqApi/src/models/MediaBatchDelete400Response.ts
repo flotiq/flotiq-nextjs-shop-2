@@ -19,77 +19,50 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateProduct400Response
+ * @interface MediaBatchDelete400Response
  */
 
 
-export interface CreateProduct400Response {
+export interface MediaBatchDelete400Response {
     /**
      * 
      * @type {Array<string>}
-     * @memberof CreateProduct400Response
+     * @memberof MediaBatchDelete400Response
      */
 
-    name?: Array<string> ;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateProduct400Response
-     */
-
-    slug?: Array<string> ;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateProduct400Response
-     */
-
-    price?: Array<string> ;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateProduct400Response
-     */
-
-    id?: Array<string> ;
+    errors?: Array<string> ;
 }
 
 
 
 /**
- * Check if a given object implements the CreateProduct400Response interface.
+ * Check if a given object implements the MediaBatchDelete400Response interface.
  */
-export function instanceOfCreateProduct400Response(value: object): boolean {
+export function instanceOfMediaBatchDelete400Response(value: object): boolean {
     return true;
 }
 
-export function CreateProduct400ResponseFromJSON(json: any): CreateProduct400Response {
-    return CreateProduct400ResponseFromJSONTyped(json, false);
+export function MediaBatchDelete400ResponseFromJSON(json: any): MediaBatchDelete400Response {
+    return MediaBatchDelete400ResponseFromJSONTyped(json, false);
 }
 
-export function CreateProduct400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateProduct400Response  {
+export function MediaBatchDelete400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MediaBatchDelete400Response  {
     if (json == null) {
         return json;
     }
         return {
         
-        'name': json['name'] == null ? undefined : json['name'],
-        'slug': json['slug'] == null ? undefined : json['slug'],
-        'price': json['price'] == null ? undefined : json['price'],
-        'id': json['id'] == null ? undefined : json['id'],
+        'errors': json['errors'] == null ? undefined : json['errors'],
     };
 }
 
-export function CreateProduct400ResponseToJSON(value?: CreateProduct400Response | null): any {
+export function MediaBatchDelete400ResponseToJSON(value?: MediaBatchDelete400Response | null): any {
     if (value == null) {
         return value;
     }
     return {
         
-        'name': value['name'],
-        'slug': value['slug'],
-        'price': value['price'],
-        'id': value['id'],
+        'errors': value['errors'],
     };
 }
 

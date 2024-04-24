@@ -10,35 +10,35 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { BatchDeleteMedia200Response, BatchResponseSuccess, Project, ProjectList, ProjectVersionsList, ProjectWithoutInternal, ProjectWithoutRequired } from '../models/index';
-export interface ProjectAPIBatchCreateProjectRequest {
+import type { BatchResponseSuccess, MediaBatchDelete200Response, Project, ProjectList, ProjectVersionsList, ProjectWithoutInternal, ProjectWithoutRequired } from '../models/index';
+export interface ProjectAPIDeleteRequest {
+    id: string;
+}
+export interface ProjectAPIBatchCreateRequest {
     updateExisting?: boolean;
     ProjectWithoutInternal?: Array<ProjectWithoutInternal>;
 }
-export interface ProjectAPIBatchDeleteProjectRequest {
+export interface ProjectAPIBatchDeleteRequest {
     request_body?: Array<string>;
 }
-export interface ProjectAPIBatchPatchProjectRequest {
+export interface ProjectAPIBatchPatchRequest {
     ProjectWithoutInternal?: Array<ProjectWithoutInternal>;
 }
-export interface ProjectAPICreateProjectRequest {
+export interface ProjectAPICreateRequest {
     ProjectWithoutInternal?: ProjectWithoutInternal;
 }
-export interface ProjectAPIDeleteProjectRequest {
-    id: string;
-}
-export interface ProjectAPIGetProjectRequest {
+export interface ProjectAPIGetRequest {
     id: string;
     hydrate?: number;
 }
-export interface ProjectAPIGetProjectVersionsRequest {
+export interface ProjectAPIGetRemovedRequest {
+    deletedAfter?: string;
+}
+export interface ProjectAPIGetVersionsRequest {
     id: string;
     versionId: string;
 }
-export interface ProjectAPIGetRemovedProjectRequest {
-    deletedAfter?: string;
-}
-export interface ProjectAPIListProjectRequest {
+export interface ProjectAPIListRequest {
     page?: number;
     limit?: number;
     order_by?: string;
@@ -47,18 +47,18 @@ export interface ProjectAPIListProjectRequest {
     filters?: string;
     ids?: Array<string>;
 }
-export interface ProjectAPIListProjectVersionRequest {
+export interface ProjectAPIListVersionRequest {
     id: string;
     page?: number;
     limit?: number;
     order_by?: string;
     order_direction?: string;
 }
-export interface ProjectAPIPatchProjectRequest {
+export interface ProjectAPIPatchRequest {
     id: string;
     ProjectWithoutRequired?: ProjectWithoutRequired;
 }
-export interface ProjectAPIUpdateProjectRequest {
+export interface ProjectAPIUpdateRequest {
     id: string;
     ProjectWithoutInternal?: ProjectWithoutInternal;
 }
@@ -67,123 +67,123 @@ export interface ProjectAPIUpdateProjectRequest {
  */
 export declare class ProjectAPI extends runtime.BaseAPI {
     /**
-     * Allows you to create or create and update up to 100 objects of Project type. <br />
-     * Create a batch of project objects
+     * Removes Project object.<br />
+     * Delete a Project object
      */
-    batchCreateProjectRaw(requestParameters: ProjectAPIBatchCreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
-    /**
-     * Allows you to create or create and update up to 100 objects of Project type. <br />
-     * Create a batch of project objects
-     */
-    batchCreateProject(requestParameters?: ProjectAPIBatchCreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
-    /**
-     * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of Project objects
-     */
-    batchDeleteProjectRaw(requestParameters: ProjectAPIBatchDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchDeleteMedia200Response>>;
-    /**
-     * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
-     * Delete a batch of Project objects
-     */
-    batchDeleteProject(requestParameters?: ProjectAPIBatchDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchDeleteMedia200Response>;
-    /**
-     * Allows you to update up to 100 objects of Project type. <br />
-     * Update selected fields of a batch of objects
-     */
-    batchPatchProjectRaw(requestParameters: ProjectAPIBatchPatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
-    /**
-     * Allows you to update up to 100 objects of Project type. <br />
-     * Update selected fields of a batch of objects
-     */
-    batchPatchProject(requestParameters?: ProjectAPIBatchPatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
-    /**
-     * Allows you to create object of Project type. <br />
-     * Create a Project object
-     */
-    createProjectRaw(requestParameters: ProjectAPICreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
-    /**
-     * Allows you to create object of Project type. <br />
-     * Create a Project object
-     */
-    createProject(requestParameters?: ProjectAPICreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
+    _deleteRaw(requestParameters: ProjectAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      * Removes Project object.<br />
      * Delete a Project object
      */
-    deleteProjectRaw(requestParameters: ProjectAPIDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    _delete(requestParameters: ProjectAPIDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Removes Project object.<br />
-     * Delete a Project object
+     * Allows you to create or create and update up to 100 objects of Project type. <br />
+     * Create a batch of project objects
      */
-    deleteProject(requestParameters: ProjectAPIDeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    batchCreateRaw(requestParameters: ProjectAPIBatchCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
+    /**
+     * Allows you to create or create and update up to 100 objects of Project type. <br />
+     * Create a batch of project objects
+     */
+    batchCreate(requestParameters?: ProjectAPIBatchCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
+    /**
+     * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of Project objects
+     */
+    batchDeleteRaw(requestParameters: ProjectAPIBatchDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MediaBatchDelete200Response>>;
+    /**
+     * Allows you to delete up to 100 objects of Project type. <br />Request body accepts an array of content object IDs that are to be deleted.<br />
+     * Delete a batch of Project objects
+     */
+    batchDelete(requestParameters?: ProjectAPIBatchDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MediaBatchDelete200Response>;
+    /**
+     * Allows you to update up to 100 objects of Project type. <br />
+     * Update selected fields of a batch of objects
+     */
+    batchPatchRaw(requestParameters: ProjectAPIBatchPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BatchResponseSuccess>>;
+    /**
+     * Allows you to update up to 100 objects of Project type. <br />
+     * Update selected fields of a batch of objects
+     */
+    batchPatch(requestParameters?: ProjectAPIBatchPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BatchResponseSuccess>;
+    /**
+     * Allows you to create object of Project type. <br />
+     * Create a Project object
+     */
+    createRaw(requestParameters: ProjectAPICreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
+    /**
+     * Allows you to create object of Project type. <br />
+     * Create a Project object
+     */
+    create(requestParameters?: ProjectAPICreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
     /**
      * Returns all information about Project object. <br />
      * Get Project object by Id
      */
-    getProjectRaw(requestParameters: ProjectAPIGetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
+    getRaw(requestParameters: ProjectAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
     /**
      * Returns all information about Project object. <br />
      * Get Project object by Id
      */
-    getProject(requestParameters: ProjectAPIGetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
-    /**
-     * Return version of Project object. <br />
-     * Get a specific version of Project object
-     */
-    getProjectVersionsRaw(requestParameters: ProjectAPIGetProjectVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
-    /**
-     * Return version of Project object. <br />
-     * Get a specific version of Project object
-     */
-    getProjectVersions(requestParameters: ProjectAPIGetProjectVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
+    get(requestParameters: ProjectAPIGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
     /**
      * Get ids of removed Project objects. <br />
      * Get removed object identifiers
      */
-    getRemovedProjectRaw(requestParameters: ProjectAPIGetRemovedProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+    getRemovedRaw(requestParameters: ProjectAPIGetRemovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
     /**
      * Get ids of removed Project objects. <br />
      * Get removed object identifiers
      */
-    getRemovedProject(requestParameters?: ProjectAPIGetRemovedProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    getRemoved(requestParameters?: ProjectAPIGetRemovedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    /**
+     * Return version of Project object. <br />
+     * Get a specific version of Project object
+     */
+    getVersionsRaw(requestParameters: ProjectAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
+    /**
+     * Return version of Project object. <br />
+     * Get a specific version of Project object
+     */
+    getVersions(requestParameters: ProjectAPIGetVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
     /**
      * List objects of Project type. <br />
      * List Project objects
      */
-    listProjectRaw(requestParameters: ProjectAPIListProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectList>>;
+    listRaw(requestParameters: ProjectAPIListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectList>>;
     /**
      * List objects of Project type. <br />
      * List Project objects
      */
-    listProject(requestParameters?: ProjectAPIListProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectList>;
+    list(requestParameters?: ProjectAPIListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectList>;
     /**
      * List objects versions of Project type. <br />
      * List all versions of a Project object
      */
-    listProjectVersionRaw(requestParameters: ProjectAPIListProjectVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectVersionsList>>;
+    listVersionRaw(requestParameters: ProjectAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectVersionsList>>;
     /**
      * List objects versions of Project type. <br />
      * List all versions of a Project object
      */
-    listProjectVersion(requestParameters: ProjectAPIListProjectVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectVersionsList>;
+    listVersion(requestParameters: ProjectAPIListVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectVersionsList>;
     /**
      * Allows update of the Project object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Project object
      */
-    patchProjectRaw(requestParameters: ProjectAPIPatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
+    patchRaw(requestParameters: ProjectAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
     /**
      * Allows update of the Project object, but it is unnecessary to specify all the object\'s properties. Properties not included in the payload will be completed with data from the database. <br />
      * Update selected fields of Project object
      */
-    patchProject(requestParameters: ProjectAPIPatchProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
+    patch(requestParameters: ProjectAPIPatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
     /**
      * Allows update of the Project object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Project object
      */
-    updateProjectRaw(requestParameters: ProjectAPIUpdateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
+    updateRaw(requestParameters: ProjectAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
     /**
      * Allows update of the Project object, it has to have all fields, as this operation overwrites the object. All properties not included in the payload will be lost. <br />
      * Update existing Project object
      */
-    updateProject(requestParameters: ProjectAPIUpdateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
+    update(requestParameters: ProjectAPIUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
 }
