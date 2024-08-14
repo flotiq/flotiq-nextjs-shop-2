@@ -31,8 +31,7 @@ const CategoriesChoiceBar = ({ additionalClass, categoryTabs }) => {
                 <nav className="w-full -mb-px flex justify-between" aria-label="Tabs">
                     {categoryTabs.map((tab) => (
                         <Link href={tab.href} key={tab.name} aria-current={tab.current ? 'page' : undefined}>
-                            <a
-                                href="#"
+                            <span
                                 className={classNames(
                                     tab.current
                                         ? 'underline !font-semibold text-primary hover:text-gray-700 '
@@ -41,7 +40,7 @@ const CategoriesChoiceBar = ({ additionalClass, categoryTabs }) => {
                                 )}
                             >
                                 {tab.name}
-                            </a>
+                            </span>
                         </Link>
                     ))}
                 </nav>

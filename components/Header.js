@@ -11,43 +11,35 @@ const Header = () => (
                     <div className="flex justify-between h-16">
                         <div className="w-full flex justify-center md:justify-between items-center">
                             <Link href="/" className="flex-shrink-0 flex items-center">
-                                <a href="#">
-                                    <img
-                                        className="block h-10 md:h-16 w-auto"
-                                        src="/assets/planty-logo.svg"
-                                        alt="Planty"
-                                        width={157.7}
-                                        height={63}
-                                    />
-                                </a>
+                                <img
+                                    className="block h-10 md:h-16 w-auto"
+                                    src="/assets/planty-logo.svg"
+                                    alt="Planty"
+                                    width={157.7}
+                                    height={63}
+                                />
                             </Link>
                             <div className="hidden md:ml-6 md:text-xl md:flex md:space-x-16">
-                                <Link href="/products/1">
-                                    <a
-                                        href="#"
-                                        className="inline-flex items-center px-1 pt-1
+                                <Link
+                                    href="/products/1"
+                                    className="inline-flex items-center px-1 pt-1
                                         text-xl font-medium text-secondary"
-                                    >
-                                        Store
-                                    </a>
+                                >
+                                    Store
                                 </Link>
-                                <Link href="/">
-                                    <a
-                                        href="#"
-                                        className="hover:text-secondary inline-flex
+                                <Link
+                                    href="/"
+                                    className="hover:text-secondary inline-flex
                                         items-center px-1 pt-1 text-xl font-light"
-                                    >
-                                        About
-                                    </a>
+                                >
+                                    About
                                 </Link>
-                                <Link href="/">
-                                    <a
-                                        href="#"
-                                        className="hover:text-secondary inline-flex
+                                <Link
+                                    href="/"
+                                    className="hover:text-secondary inline-flex
                                          items-center px-1 pt-1 text-xl font-light"
-                                    >
-                                        FAQ
-                                    </a>
+                                >
+                                    FAQ
                                 </Link>
                             </div>
                         </div>
