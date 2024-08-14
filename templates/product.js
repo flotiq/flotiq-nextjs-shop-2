@@ -32,7 +32,7 @@ const ProductTemplate = ({ product, pageContext }) => {
                             width="958"
                             height="1261"
                             className="w-full"
-                            objectFit="cover"
+                            style={{ objectFit: 'cover' }}
                             alt={product.name}
                         />
                     </div>

@@ -30,40 +30,40 @@ const IndexPage = ({ products, bestsellers }) => {
     ];
 
     return (<Layout additionalClass={['bg-white']}>
-            <Head>
-                <title>{config.siteMetadata.title}</title>
-                <meta
-                    name="description"
-                    content={config.siteMetadata.description}
-                />
-            </Head>
-            <Hero
-                headerText="Best Plants for your home"
-                paragraphText="Check our store and find the most beautiful plant for your home"
-                buttonLabel="All the products"
-                heroImage="/assets/hero-bg.jpg"
+        <Head>
+            <title>{config.siteMetadata.title}</title>
+            <meta
+                name="description"
+                content={config.siteMetadata.description}
             />
-            <BestSellers
-                products={bestsellers}
-                additionalClass={['bg-green-gray py-14']}
-                headerText="Best sellers"
-            />
-            <Products products={products} additionalClass={['my-5']} headerText="Products" />
-            <ReviewsSection
-                headerText="Reviews"
-                reviews={reviews}
-                avatar={Avatar}
-                additionalClass={['my-10 lg:my-24']}
-            />
-            <ImageWithText
-                image={ImageWithTextBackground}
-                headerText1="Buy one"
-                headerText2="plant get"
-                headerText3="one for free"
-                buttonLabel="All the products"
-                additionalClass={['']}
-            />
-        </Layout>
+        </Head>
+        <Hero
+            headerText="Best Plants for your home"
+            paragraphText="Check our store and find the most beautiful plant for your home"
+            buttonLabel="All the products"
+            heroImage="/assets/hero-bg.jpg"
+        />
+        <BestSellers
+            products={bestsellers}
+            additionalClass={['bg-green-gray py-14']}
+            headerText="Best sellers"
+        />
+        <Products products={products} additionalClass={['my-5']} headerText="Products" />
+        <ReviewsSection
+            headerText="Reviews"
+            reviews={reviews}
+            avatar={Avatar}
+            additionalClass={['my-10 lg:my-24']}
+        />
+        <ImageWithText
+            image={ImageWithTextBackground}
+            headerText1="Buy one"
+            headerText2="plant get"
+            headerText3="one for free"
+            buttonLabel="All the products"
+            additionalClass={['']}
+        />
+    </Layout>
     );
 };
 

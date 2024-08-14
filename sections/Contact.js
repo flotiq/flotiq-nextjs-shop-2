@@ -165,8 +165,7 @@ const Contact = ({
                     height="1985"
                     className="block basis-1/2 w-auto h-full"
                     alt="Connect with us"
-                    objectFit="cover"
-
+                    style={{ objectFit: 'cover' }}
                 />
             </div>
             <div className="basis-full md:basis-1/2 bg-light-gray py-5 px-7 order-1 md:order-2">

@@ -9,32 +9,28 @@ const ProductCard = ({ name, description, price, productImage, buttonLabel, slug
         rounded="none"
         additionalClasses={['!bg-transparent mb-5 cursor-pointer']}
     >
-        <Link href={`/product/${encodeURIComponent(slug)}`} passHref>
-            <a href="#" className="w-full image-wrapper">
-                <Image
-                    src={productImage}
-                    width="702"
-                    height="924"
-                    alt={name}
-                    objectFit="cover"
-                />
-            </a>
+        <Link href={`/product/${encodeURIComponent(slug)}`} className="w-full image-wrapper">
+            <Image
+                src={productImage}
+                width="702"
+                height="924"
+                alt={name}
+                style={{ objectFit: 'cover' }}
+            />
         </Link>
         <Card.Body additionalClasses={['!px-0 !pt-3']}>
-            <Link href={`/product/${encodeURIComponent(slug)}`} passHref>
-                <a href="#">
-                    <Card.Title additionalClasses={['flex justify-between !font-medium !text-2xl']}>
-                        <span>{name}</span>
-                        <span>
-                            $
-                            {price}
-                        </span>
-                    </Card.Title>
-                    <div
-                        className="line-clamp-2 mt-2 mb-3 text-lg font-light"
-                        dangerouslySetInnerHTML={{ __html: description }}
-                    />
-                </a>
+            <Link href={`/product/${encodeURIComponent(slug)}`}>
+                <Card.Title additionalClasses={['flex justify-between !font-medium !text-2xl']}>
+                    <span>{name}</span>
+                    <span>
+                        $
+                        {price}
+                    </span>
+                </Card.Title>
+                <div
+                    className="line-clamp-2 mt-2 mb-3 text-lg font-light"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                />
             </Link>
             <Button
                 label={buttonLabel}

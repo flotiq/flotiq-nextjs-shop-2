@@ -16,15 +16,13 @@ const NotFoundPage = () => (
 
             {/* Example usage of button */}
             <Link href="/">
-                <a href="#">
-                    <Button
-                        rounded="none"
-                        size="md"
-                        variant="info"
-                        additionalClasses={['!text-white !font-light !text-2xl !bg-secondary mt-8 hover:opacity-80']}
-                        label="Go back to index"
-                    />
-                </a>
+                <Button
+                    rounded="none"
+                    size="md"
+                    variant="info"
+                    additionalClasses={['!text-white !font-light !text-2xl !bg-secondary mt-8 hover:opacity-80']}
+                    label="Go back to index"
+                />
             </Link>
         </div>
     </Layout>

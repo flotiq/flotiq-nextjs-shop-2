@@ -11,13 +11,11 @@ const BestSellers = ({ products, additionalClass, headerText }) => (
                 <Header additionalClasses={['!text-xl md:!text-3xl !font-normal font-roboto !p-0']}>
                     {headerText}
                 </Header>
-                <Link href="/products/1">
-                    <a
-                        href="replace"
-                        className="text-right underline underline-offset-2 decoration-1 text-lg hover:text-secondary"
-                    >
-                        View all products
-                    </a>
+                <Link
+                    href="/products/1"
+                    className="text-right underline underline-offset-2 decoration-1 text-lg hover:text-secondary"
+                >
+                    View all products
                 </Link>
             </div>
             <div
