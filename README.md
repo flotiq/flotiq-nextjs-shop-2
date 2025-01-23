@@ -83,7 +83,6 @@ Check out live demo: [https://flotiq-nextjs-shop-2.netlify.app](https://flotiq-n
    [flotiq-codegen-ts repository](https://github.com/flotiq/flotiq-codegen-ts)
 
    _Note: If you make any changes (additions or deletions) to the `content type definitions` in your Flotiq account, you will need to rerun `npx flotiq-codegen-ts generate --compiled-js` command._
-
    
 6. **Start developing.**
 
