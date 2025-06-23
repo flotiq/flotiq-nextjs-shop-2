@@ -28,7 +28,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-    const products = await getProducts(1, 10000);
+    const products = await getProducts(1, 1000);
     
     return {
         paths: products.data.map((product) => ({
