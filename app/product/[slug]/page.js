@@ -1,8 +1,8 @@
 import React, { cache } from 'react'
+import { notFound } from 'next/navigation'
 import ProductTemplate from '../../../templates/product'
 import { replaceUndefinedWithNull } from '../../../lib/sanitize'
 import { getProductBySlug, getProducts } from '../../../lib/shop'
-import { notFound } from 'next/navigation'
 
 const getCachedProduct = cache(async (slug) => await getProductBySlug(slug))
 
@@ -16,7 +16,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-    const productBySlug = await getCachedProduct(params.slug)
+    const { slug } = await params
+    const productBySlug = await getCachedProduct(slug)
     const product = productBySlug.data[0]
 
     if (!product) {
@@ -30,8 +31,9 @@ export async function generateMetadata({ params }) {
 }
 
 const Page = async ({ params }) => {
-    const productBySlug = await getCachedProduct(params.slug)
-    const filtersShops = `{"slug":{"type":"notContains","filter":"${params.slug}"}}`
+    const { slug } = await params
+    const productBySlug = await getCachedProduct(slug)
+    const filtersShops = `{"slug":{"type":"notContains","filter":"${slug}"}}`
     const allProducts = await getProducts(1, 4, filtersShops)
     const productData = replaceUndefinedWithNull(productBySlug.data[0])
 

@@ -22,8 +22,10 @@ export async function generateMetadata() {
 }
 
 const Page = async ({ params }) => {
-    const pageNum = parseInt(params.page, 10)
-    if (isNaN(pageNum) || pageNum < 1 || String(pageNum) !== params.page) {
+    const { page } = await params
+    const pageNum = parseInt(page, 10)
+
+    if (isNaN(pageNum) || pageNum < 1 || String(pageNum) !== page) {
         notFound()
     }
 

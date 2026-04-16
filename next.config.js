@@ -6,16 +6,13 @@ const nextConfig = {
         dangerouslyAllowSVG: true,
         remotePatterns: [{ hostname: 'api.flotiq.com' }],
     },
-    webpack: (config, options) => {
-        if (!options.isServer) {
-            config.resolve.alias['@sentry/node'] = '@sentry/browser'
-        }
-        config.module.rules.push({
-            test: /\.svg$/,
-            issuer: { and: [/\.(js|ts)x?$/] },
-            use: ['@svgr/webpack'],
-        })
-        return config
+    turbopack: {
+        rules: {
+            '*.svg': {
+                loaders: ['@svgr/webpack'],
+                as: '*.js',
+            },
+        },
     },
 }
 

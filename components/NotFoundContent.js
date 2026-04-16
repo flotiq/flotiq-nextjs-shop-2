@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button, Header } from 'flotiq-components-react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import Layout from '../layouts/layout'
 
 const NotFoundContent = () => (
