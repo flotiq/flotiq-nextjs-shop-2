@@ -3050,10 +3050,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/darker-grotesque/-/darker-grotesque-5.0.21.tgz#87a1ba48172eb85c978857c5fb8a9e006a5a675f"
   integrity sha512-jHQn/CJ8FRrLKbPIlSohtduDve/L6YCeqtyhPlrFnfkdN8pdIjwNBNGJE4B+eqo7t//M4wUSA4xQvg46lwh7EQ==
 
-"@fontsource/inter@^5.0.20":
-  version "5.0.20"
-  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-5.0.20.tgz#968436ab21f05d3b3cb3191fa0958d91e37dde43"
-  integrity sha512-rtw2F7xfM7rJmmnncXnR4ADr5wXsp4GyN1O1jmQJ1PMjAK+bm620/ZkQkeOYOkGoa09OksGinOeMA+Mkt6K9PQ==
+"@fontsource/inter@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-5.2.8.tgz#10c95d877d972c7de5bd4592309d42fb6a5e1a5b"
+  integrity sha512-P6r5WnJoKiNVV+zvW2xM13gNdFhAEpQ9dQJHt3naLvfg+LkF2ldgSLiF4T41lf1SQCM9QmkqPTn4TH568IRagg==
 
 "@fontsource/roboto@^5.0.14":
   version "5.0.14"
