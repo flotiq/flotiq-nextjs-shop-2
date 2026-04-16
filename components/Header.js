@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import { Disclosure } from '@headlessui/react';
 import { ShoppingBagIcon, MenuIcon, XIcon } from '@heroicons/react/outline';

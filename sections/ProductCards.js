@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import ProductCard from '../components/ProductCard';
 import FlotiqImage from '../lib/FlotiqImage';

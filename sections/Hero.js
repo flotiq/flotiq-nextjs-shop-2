@@ -1,6 +1,8 @@
+'use client'
+
 import React from 'react';
 import { Button, Header, Paragraph } from 'flotiq-components-react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 const Hero = ({ heroImage, headerText, paragraphText, buttonLabel }) => {
