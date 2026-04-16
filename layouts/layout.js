@@ -1,12 +1,10 @@
 import React from 'react';
-import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Contact from '../sections/Contact';
 
 const Layout = ({ children, additionalClass = [] }) => (
     <main className={['font-grotesque', ...additionalClass].join(' ')}>
-        <Head />
         <Header />
         {children}
         <Contact

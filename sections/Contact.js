@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import { Button, Header } from 'flotiq-components-react';
 import Image from 'next/image';
