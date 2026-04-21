@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.5.0",
     "eslint": "9.26.0",
     "eslint-config-next": "^14.2.7",
     "eslint-config-react": "^1.1.7",
