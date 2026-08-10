@@ -33,8 +33,12 @@ export async function generateMetadata({ params }) {
 const Page = async ({ params }) => {
     const { slug } = await params
     const productBySlug = await getCachedProduct(slug)
-    const filtersShops = `{"slug":{"type":"notContains","filter":"${slug}"}}`
-    const allProducts = await getProducts(1, 4, filtersShops)
+    const allProducts = await getProducts(1, 4, {
+        slug: {
+            type: 'notContains',
+            filter: slug,
+        },
+    })
     const productData = replaceUndefinedWithNull(productBySlug.data[0])
 
     if (!productData) {
