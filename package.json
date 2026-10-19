@@ -9,7 +9,7 @@
     "lint:fix": "eslint --fix --ext .js,.jsx ."
   },
   "dependencies": {
-    "@babel/eslint-parser": "^7.29.9",
+    "@babel/eslint-parser": "^8.0.7",
     "@flotiq/flotiq-api-sdk": "^1.1.2",
     "@fontsource/darker-grotesque": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
